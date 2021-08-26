@@ -27,7 +27,7 @@ class UsersSeeder extends Seeder
             'password'=> bcrypt('superadmin'),
         ],
         [
-            'username' => 'admin accounting',
+            'username' => 'accounting',
             'name'=>'accounting',
             'email'=>'payment@example.com',
             'phone'=>'0',
