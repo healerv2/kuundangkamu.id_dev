@@ -48,8 +48,11 @@ class HomeRegisterController extends Controller
                 return redirect()->intended('visitor/public');
             }
       
-        } catch (Exception $e) {
-            dd($e->getMessage());
+        } catch (\Throwable $th) {
+            return (object) [
+                'success' => false,
+                'message' => 'Data sudah terdaftar'
+            ];
         }
     }
 }
