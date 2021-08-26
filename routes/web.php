@@ -2,7 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeLoginController;
+use App\Http\Controllers\HomeRegisterController;
 use App\Http\Controllers\Backoffice\DashboardController;
+use App\Http\Controllers\Accounting\DashAccontingController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +27,11 @@ Auth::routes();
 Route::get('login',[HomeLoginController::class,'index'])->name('login');
 Route::post('action_login',[HomeLoginController::class,'action_login'])->name('action_login');
 Route::get('logout',[HomeLoginController::class,'action_logout'])->name('logout');
+Route::get('register',[HomeRegisterController::class,'index'])->name('register');
+Route::get('auth/google', [HomeRegisterController::class, 'redirectToGoogle']);
+Route::get('auth/google/callback', [HomeRegisterController::class, 'handleGoogleCallback']);
+
+
 
 Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['ceks_login:superadmin']], function () {
@@ -39,6 +47,9 @@ Route::group(['middleware' => ['auth']], function () {
         /*
             Route Khusus untuk role accounting
         */
+            Route::prefix('/accounting')->group(function() {
+                Route::get('/dashboard',[DashAccontingController::class,'index']);
+            });
 
         });
     Route::group(['middleware' => ['ceks_login:visitor']], function () {
