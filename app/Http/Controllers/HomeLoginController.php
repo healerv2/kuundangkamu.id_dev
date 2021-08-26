@@ -16,13 +16,15 @@ class HomeLoginController extends Controller
 
      public function action_login(Request $request)
      {
+        $remember = $request->remember ? true : false;
+
         request()->validate([
         'username' => 'required',
         'password' => 'required',
         ]);
 
         $credentials = $request->only('username', 'password');
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials, $remember)) {
             $user = Auth::user();
             if ($user->level == 'superadmin') {
                 return redirect()->intended('superadmin/dashboard');
