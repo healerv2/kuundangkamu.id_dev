@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeLoginController;
 use App\Http\Controllers\HomeRegisterController;
 use App\Http\Controllers\Backoffice\DashboardController;
 use App\Http\Controllers\Accounting\DashAccontingController;
+use App\Http\Controllers\Visitor\DashVisitorController;
 
 
 /*
@@ -35,8 +36,6 @@ Route::get('form', function () {
     return view('users/form');
 });
 
-
-
 Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['ceks_login:superadmin']], function () {
         /*
@@ -60,6 +59,9 @@ Route::group(['middleware' => ['auth']], function () {
         /*
             Route Khusus untuk role visitor
         */
+            Route::prefix('/visitor')->group(function() {
+                Route::get('/public',[DashVisitorController::class,'index']);
+            });
 
         });
 });

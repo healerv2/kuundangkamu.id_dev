@@ -5,7 +5,7 @@
     <!-- /.login-logo -->
     <div class="card card-outline card-primary">
       <div class="card-header text-center">
-        <a href="" class="h1"><b>Back</b>Office</a>
+        <a href="" class="h1"><b>Page</b>Login</a>
       </div>
       <div class="card-body">
         <p class="login-box-msg">Sign in to start your session</p>
@@ -30,7 +30,7 @@
             <input type="text" name="username" id="username" class="form-control" autocomplete="on" placeholder="Username">
             <div class="input-group-append">
               <div class="input-group-text">
-                <span class="fas fa-users"></span>
+                <span class="fas fa-user"></span>
               </div>
             </div>
           </div>
@@ -59,14 +59,14 @@
           </div>
         </form>
 
-     {{--  <div class="social-auth-links text-center mt-2 mb-3">
-        <a href="#" class="btn btn-block btn-primary">
+      <div class="social-auth-links text-center mt-2 mb-3">
+        {{-- <a href="#" class="btn btn-block btn-primary">
           <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-        </a>
-        <a href="#" class="btn btn-block btn-danger">
+        </a> --}}
+        <a href="{{ url('auth/google') }}" class="btn btn-block btn-danger">
           <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
         </a>
-      </div> --}}
+      </div>
       <!-- /.social-auth-links -->
 
       {{-- <p class="mb-1">

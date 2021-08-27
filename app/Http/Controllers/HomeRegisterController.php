@@ -38,9 +38,11 @@ class HomeRegisterController extends Controller
             }else{
                 $newUser = User::create([
                     'name' => $user->name,
+                    'username' => $user->email,
                     'email' => $user->email,
                     'google_id'=> $user->id,
-                    'password' => encrypt('123456dummy')
+                    'level' => 'visitor',
+                    'password' => encrypt('123456')
                 ]);
       
                 Auth::login($newUser);
@@ -48,11 +50,8 @@ class HomeRegisterController extends Controller
                 return redirect()->intended('visitor/public');
             }
       
-        } catch (\Throwable $th) {
-            return (object) [
-                'success' => false,
-                'message' => 'Data sudah terdaftar'
-            ];
+        } catch (Exception $e) {
+            dd($e->getMessage());
         }
     }
 }
