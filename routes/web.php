@@ -3,7 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeLoginController;
 use App\Http\Controllers\HomeRegisterController;
+//superadmin
 use App\Http\Controllers\Backoffice\DashboardController;
+use App\Http\Controllers\Backoffice\DataUserController;
+
+//accounting
 use App\Http\Controllers\Accounting\DashAccontingController;
 use App\Http\Controllers\Visitor\DashVisitorController;
 
@@ -43,6 +47,8 @@ Route::group(['middleware' => ['auth']], function () {
         */
             Route::prefix('/superadmin')->group(function() {
                 Route::get('/dashboard',[DashboardController::class,'index']);
+                Route::get('/user',[DataUserController::class,'index']);
+                Route::get('/user/ajax',[DataUserController::class,'GetUser']);
             });
 
         });

@@ -1,8 +1,8 @@
 <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+    <strong><?php echo "Copyright © - " . (int)date('Y'). " kuundangkamu.id"?> .</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.1.0
+      <b>Version</b> 1.1.0
     </div>
   </footer>
 
@@ -48,4 +48,17 @@
 <script src="{{url('')}}/assets/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{url('')}}/assets/dist/js/pages/dashboard.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="{{url('')}}/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="{{url('')}}/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="{{url('')}}/assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="{{url('')}}/assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="{{url('')}}/assets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="{{url('')}}/assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="{{url('')}}/assets/plugins/jszip/jszip.min.js"></script>
+<script src="{{url('')}}/assets/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="{{url('')}}/assets/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="{{url('')}}/assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="{{url('')}}/assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="{{url('')}}/assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 @stack('scripts')
