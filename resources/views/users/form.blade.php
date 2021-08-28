@@ -2,6 +2,6 @@
 @section('content')
 <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-form
+    form
   </div>
   <!-- /.content-wrapper -->

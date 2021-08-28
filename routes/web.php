@@ -36,8 +36,8 @@ Route::get('register',[HomeRegisterController::class,'index'])->name('register')
 Route::get('auth/google', [HomeRegisterController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [HomeRegisterController::class, 'handleGoogleCallback']);
 
-Route::get('form', function () {
-    return view('users/form');
+Route::get('signup', function () {
+    return view('visitor/apps/signup');
 });
 
 Route::group(['middleware' => ['auth']], function () {
