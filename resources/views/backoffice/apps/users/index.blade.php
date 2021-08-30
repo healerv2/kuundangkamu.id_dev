@@ -40,7 +40,7 @@
       <div class="card">
         <div class="card-header">
           <h3 class="card-title">List Data User</h3>
-          <a href="{{ url('superadmin/user/add') }}" class="btn btn-primary btn-sm float-right">Add </a>
+          <a href="{{ url('superadmin/user/add') }}" class="btn btn-primary btn-sm float-right">Add Data User</a>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -89,16 +89,14 @@
 <script>
   $(function () {
     $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "responsive": true, "lengthChange": true, "autoWidth": true,
       "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
       "paging": true,
-      "lengthChange": false,
       "searching": true,
       "ordering": true,
       "info": true,
       "autoWidth": true,
       "responsive": true,
-      //dom: 'lBfrtip',
       ajax: function(data, callback){
       $.ajax({
         url: '{{ url('/')}}/superadmin/user/ajax',
@@ -146,7 +144,7 @@
       language: {
         loadingRecords: "&nbsp;",
         processing: 'Mohon tunggu sedang meload data'},
-    });
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
   });
 </script>
 @endpush 
