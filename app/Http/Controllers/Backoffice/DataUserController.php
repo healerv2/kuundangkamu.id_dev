@@ -17,8 +17,8 @@ class DataUserController extends Controller
     public function GetUser(Request $request)
     {
         $draw = $request->get('draw');
-        $start = $request->get('start');
-        $length = $request->get('length');
+        $start = $request->get('start') ?? 0;
+        $length = $request->get('length') ?? 10;
         $search = $request->input('search.value');
 
         if ($search) {

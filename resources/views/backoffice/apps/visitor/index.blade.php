@@ -95,6 +95,8 @@
       "info": true,
       "autoWidth": false,
       "responsive": true,
+      "start": 0,
+        "length": 10,
       ajax: function(data, callback){
       $.ajax({
         url: '{{ url('/')}}/superadmin/user/ajax',
@@ -115,10 +117,10 @@
     },
     columns: [
         { data: 'id', name: 'Id' },
-         //  { data: null,sortable: false, 
+         //  { data: null,sortable: false,
          //    render: function (data, type, row, meta) {
          //     return meta.row + meta.settings._iDisplayStart + 1;
-         //   }  
+         //   }
          // },
          { data: 'name', name: 'Nama' },
          { data: 'username', name: 'Nip' },
@@ -127,11 +129,11 @@
          { data: 'email', name: 'Email' },
          { data: null, mRender: function(data, type, full) {
 
-          return `<a class="btn btn-primary btn-sm" onclick="return confirm('Anda yakin akan menghapus data ini?');" href="{{url('')}}/backoffice/penyelia/delete/${data.id}"> 
+          return `<a class="btn btn-primary btn-sm" onclick="return confirm('Anda yakin akan menghapus data ini?');" href="{{url('')}}/backoffice/penyelia/delete/${data.id}">
           <i class="fa fa-trash"></i> Delete</a>
-          <a class="btn btn-primary btn-sm" href="{{url('')}}/backoffice/penyelia/edit/${data.id}"> 
+          <a class="btn btn-primary btn-sm" href="{{url('')}}/backoffice/penyelia/edit/${data.id}">
           <i class="fa fa-pencil"></i> Edit</a>
-          <a class="btn btn-danger btn-sm" href="{{url('')}}/backoffice/penyelia/getreset/${data.id}"> 
+          <a class="btn btn-danger btn-sm" href="{{url('')}}/backoffice/penyelia/getreset/${data.id}">
           <i class="fa fa-send"></i> Reset Password</a>
           `;
 
@@ -144,4 +146,4 @@
     });
   });
 </script>
-@endpush 
+@endpush
