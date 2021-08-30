@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="{{url('')}}/assets/plugins/fontawesome-free/css/all.min.css">
   <!-- Daterange picker -->
   <link rel="stylesheet" href="{{url('')}}/assets/plugins/daterangepicker/daterangepicker.css">
+  <link rel="stylesheet" href="{{url('')}}/css/main.min.css">
   <link rel="stylesheet" href="{{url('')}}/css/user.min.css">
 </head>
 <body class="">

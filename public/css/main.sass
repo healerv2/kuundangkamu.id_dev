@@ -1,0 +1,652 @@
+$primary: #ec3c35
+$gray: #efefef
+$gray-light: #f3f3f3
+$gray-dark: #797979
+$gray-bg: #e5e5e5
+$black: #212121
+$black-dark: #000000
+$black-light: #434343
+$white: #ffffff
+$red: #f00
+$green: #69cc69
+$yellow: #f6dd4b
+$yellow-light: #fffcec
+$orange: #feebcd
+$purple: #882ff6
+
+
+\:root
+    --color-primary: #{$primary}
+    --color-gray: #{$gray}
+    --color-gray-light: #{$gray-light}
+    --color-gray-dark: #{$gray-dark}
+    --color-gray-bg: #{$gray-bg}
+    --color-white: #{$white}
+    --color-black: #{$black}
+    --color-black-dark: #{$black-dark}
+    --color-black-light: #{$black-light}
+    --color-red: #{$red}
+    --color-green: #{$green}
+    --color-yellow: #{$yellow}
+    --color-yellow-light: #{$yellow-light}
+    --color-orange: #{$orange}
+    --color-purple: #{$purple}
+    --breakpoint-xs: 0
+    --breakpoint-sm: 576px
+    --breakpoint-md: 768px
+    --breakpoint-lg: 992px
+    --breakpoint-xl: 1200px
+    --font-family-primary: 'Poppins', sans-serif
+    --font-family-secondary: 'Bellota Text', cursive
+
+*,
+*::before,
+*::after
+    box-sizing: border-box
+
+@-ms-viewport
+    width: device-width
+
+%heading
+	font-family: var(--font-family-primary)
+	line-height: 1.4em
+	font-weight: 700
+	margin: 0
+=font-size($size)
+	font-size: $size
+h1,h2,h3,h4,h5,h6,p
+	@extend %heading
+	small
+		font-size: 70%
+		line-height: normal
+		letter-spacing: normal
+		text-transform: none
+p
+    font-weight: normal
+    line-height: 1.6em
+    b 
+        font-weight: 600
+h1
+	+font-size(36px)
+h2
+	+font-size(32px)
+h3
+	+font-size(28px)
+h4
+	+font-size(24px)
+h5
+	+font-size(20px)
+h6
+	+font-size(16px)
+
+html
+    -webkit-text-size-adjust: 100%
+    -ms-text-size-adjust: 100%
+    -ms-overflow-style: scrollbar
+    -webkit-tap-highlight-color: transparent
+    overflow-x: hidden
+    &.overflow
+        overflow: hidden
+        .header.wow
+            -webkit-animation-name: none !important
+            animation-name: none !important
+            animation-delay: 0s !important
+            
+
+@keyframes loading-placeholder
+    0%
+        transform: translateX(-100%)
+    100%
+        transform: translateX(100%)
+
+img 
+    border: 0
+    vertical-align: middle
+    color: transparent
+    
+a 
+    color: inherit 
+    text-decoration: none
+    outline: none
+
+article, aside, dialog, figcaption, figure, footer, header, hgroup, main, nav, section
+    display: block
+
+figure 
+    margin: 0
+    padding: 0
+
+.-unstyled 
+    margin: 0
+    padding: 0
+    list-style: none
+
+.-flex
+    display: flex
+    flex-flow: wrap
+    &--justalign-center 
+        justify-content: center
+        align-items: center
+    &--justalign-startcenter
+        justify-content: flex-start
+        align-items: center
+    &--justalign-endcenter 
+        justify-content: flex-end
+        align-items: center
+    &--justalign-spacebetweencenter
+        justify-content: space-between
+        align-items: center
+    &--nowrap
+        flex-flow: nowrap
+        overflow-y: auto
+    &--column
+        flex-flow: column
+
+button 
+    cursor: pointer
+    background-color: transparent
+    border: 0
+    padding: 0
+    min-height: 30px
+    outline: none
+    box-shadow: none
+
+[data-toggle]
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    pointer-events: none
+    background-color: var(--color-white)
+    transition: transform .5s ease
+    -webkit-transform: translate3d(100%, 0, 0)
+    transform: translate3d(100%, 0, 0)
+    overflow-y: auto
+    z-index: 12
+    &.open
+        -webkit-transform: translate3d(0, 0, 0)
+        transform: translate3d(0, 0, 0)
+        >* 
+            pointer-events: auto
+
+.collapse
+    &.open
+        .icon--expand 
+            transform: rotate(180deg)
+    &__item
+        display: none
+
+.visible-md,
+.visible-lg 
+    display: none !important
+
+
+.swiper-container 
+    visibility: hidden
+    opacity: 0
+    transition: .5s ease
+    &-initialized
+        visibility: visible
+        opacity: 1
+
+body
+    margin: 0
+    padding: 0
+    font-size: 14px
+    font-weight: normal
+    color: var(--color-black)
+    background-color: var(--color-white)
+    font-family: var(--font-family-primary)
+    overflow-x: hidden
+
+.container 
+    position: relative
+    max-width: 980px
+    margin-left: auto
+    margin-right: auto
+    padding-left: 20px
+    padding-right: 20px
+    z-index: 2
+
+/*icon*/
+.icon 
+    display: inline-block
+    vertical-align: middle
+    &::after
+        content: ""
+        background-repeat: no-repeat
+        background-position: center 
+        background-size: contain
+        display: inline-block
+        vertical-align: middle
+        width: 22px
+        height: 22px
+    &--fb
+        &::after
+            background-image: url(../../assets/icon-fb.png)
+    &--ig
+        &::after
+            background-image: url(../../assets/icon-ig.png)
+    &--mail
+        &::after
+            background-image: url(../../assets/icon-mail.png)
+            
+    
+/*form*/
+$minheight: 38px
+input[type]
+    border: 0
+    background-color: transparent 
+    box-shadow: none
+    border-radius: 0
+    outline: none
+    font-size: 15px
+    font-family: var(--font-family-primary)
+    width: 100%
+.input-group 
+    display: flex
+    justify-content: space-between
+    &-control 
+        min-height: $minheight
+        flex: 1
+    &-btn
+        &:first-child
+            padding-right: 15px
+        &:last-child
+            padding-left: 15px
+        .button 
+            min-height: $minheight
+
+/*button*/
+.btn 
+    font-family: var(--font-family-primary)
+    background-color: var(--color-primary)
+    color: var(--color-white)
+    font-size: 16px
+    // font-weight: 600
+    border-radius: 3px
+    transition: .5s ease
+    min-width: 100px
+    padding: 8px 20px
+    display: inline-block
+    vertical-align: middle
+    text-align: center
+    border: 1px solid transparent
+    letter-spacing: 2px
+    &:hover 
+        background-color: darken($primary, 20%)
+    &--white
+        background-color: var(--color-white)
+        color: var(--color-primary)
+        &:hover
+            background-color: darken($white, 20%)
+    &--line
+        background-color: transparent
+        border: 1px solid var(--color-white)
+        border-radius: 5px
+        &:hover
+            background-color: var(--color-white)
+            color: var(--color-primary)
+    
+
+/*lazyload*/
+img 
+    &.lazyload:not([src])
+	    visibility: hidden
+.lazyload,
+.lazyloading
+    opacity: 0
+.lazyloaded
+    opacity: 1
+    transition-duration: .5s
+    transition-property: opacity, transform
+    transition-delay: 2s, 0s
+    transition-timing-function: ease
+main.lazyloaded 
+    transition-delay: 1s
+
+/*item*/
+.item 
+    position: relative
+    display: block
+    -webkit-transform: translate3d(0, 0, 0)
+    overflow: hidden
+    &--absolute 
+        .item__description 
+            position: absolute
+            left: 0
+            bottom: 0
+            width: 100%
+            padding: 10px
+            text-align: center
+            z-index: 5
+    &__figure
+        position: relative
+        overflow: hidden
+        padding-bottom: 180px / 360px * 100%
+        z-index: 4 
+        background-color: var(--color-gray)
+        &::after 
+            content: ""
+            display: block
+            background-color: var(--color-gray-light)
+            position: absolute
+            top: 0
+            bottom: 0
+            width: 100%
+            height: 100%
+            transform: translateX(0)
+            animation: 1.5s loading-placeholder ease-in-out infinite
+            pointer-events: none
+            z-index: 0
+        a,
+        img,
+        iframe
+            width: 100%
+            height: 100%
+        img,
+        iframe 
+            position: absolute
+            top: 0
+            left: 0
+            right: 0
+            bottom: 0
+            z-index: 3
+        img
+            object-fit: cover
+    &__description 
+        padding-top: 15px
+
+.embed
+    margin-left: auto
+    margin-right: auto
+    overflow: hidden
+    -webkit-transform: translateZ(0)
+    &__frame
+        @extend .item__figure
+        padding-bottom:  210px / 375px * 100%
+        &.-vidio
+            transform: scale(1.05)
+
+
+//header
+$headerheight: 67px
+header
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    z-index: 10
+    // background-color: var(--color-white)
+    // background-image: linear-gradient(to top, #f76f65, #ec3c35)
+    color: var(--color-black)
+    transition: .5s ease
+    &.fixed
+        .header
+            box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.5)
+            background-image: linear-gradient(to top, #f76f65, #ec3c35)
+            &__col_left 
+                min-height: 70px
+    .header
+        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.5)
+        background-image: linear-gradient(to top, #f76f65, #ec3c35)
+        &__logo img
+            object-fit: contain
+            object-position: left center
+        &__col
+            &_left
+                position: relative
+                display: flex
+                justify-content: space-between
+                align-items: center
+                transition: min-height .5s ease
+                min-height: $headerheight
+                margin-left: -20px
+                margin-right: -20px
+                padding-left: 20px
+                padding-right: 20px
+                &_right 
+                    .hamburger 
+                        display: flex
+                        align-items: center
+                        justify-content: center
+                        margin-right: -20px
+                        padding-left: 20px
+                        padding-right: 20px
+                        min-width: 76px
+                        min-height: 60px
+                        position: relative
+                        z-index: 12
+                        &.collapsed
+                            .hamburger-box-inner 
+                                // background-color: var(--color-white)
+                                &::before,
+                                &::after
+                                    width: 24px
+                                    // background-color: var(--color-white)
+                                &::before
+                                    top: -6px
+                                    transform: translate3d(-6px, 0, 0) rotate(-45deg) scale(0.7, 1)
+                                &::after
+                                    bottom: -6px
+                                    transform: translate3d(-6px, 0, 0) rotate(45deg) scale(0.7, 1)
+                        &-box
+                            width: 36px
+                            height: 18px
+                            display: inline-block
+                            position: relative
+                            &-inner,
+                            &-inner::before, 
+                            &-inner::after
+                                content: ""
+                                display: block
+                                width: 100%
+                                height: 2px
+                                border-radius: 8px
+                                background-color: var(--color-white)
+                                position: absolute
+                                transition-property: transform
+                                transition-duration: 0.15s
+                                transition-timing-function: ease
+                            &-inner
+                                top: 50%
+                                margin-top: -2px
+                                &::before
+                                    top: -8px
+                                &::after
+                                    bottom: -8px
+                                
+        &__nav 
+            text-align: center
+            -webkit-transform: translate3d(100%, 0, 0)
+            transform: translate3d(100%, 0, 0)
+            background-color: var(--color-black)
+            color: var(--color-white)
+            z-index: 11
+            &.open 
+                .header__nav_inner
+                    &_list li a
+                        opacity: 1
+                        transform: scale(1) translateY(0)
+            &_bg 
+                position: fixed
+                left: 0
+                right: 0
+                top: 0
+                bottom: 0
+                width: 100%
+                height: 100%
+                background-color: rgba($black, .6)
+                display: none
+            &_inner
+                padding: 0 15px
+                display: flex
+                align-items: center
+                justify-content: center
+                min-height: 100%
+                &_list li 
+                    margin-top: 50px
+                    &:first-child
+                        margin-top: 0
+                    a 
+                        position: relative
+                        display: inline-block
+                        font-size: 20px
+                        padding-top: 5px
+                        padding-bottom: 5px
+                        border-bottom: 2px solid transparent
+                        opacity: 0
+                        transform: scale(0.95) translateX(30px)
+                        transition: .5s ease
+                        &:hover 
+                            border-bottom-color: var(--color-primary)
+                    &.active a
+                        border-bottom-color: var(--color-white)
+                @for $i from 1 through 10
+                    &:nth-child(#{$i}) a
+                        transition-delay: (#{$i * .3s})
+
+.unstyled 
+    margin: 0
+    padding: 0
+    list-style: none
+    line-height: 1.6em
+
+//section
+.main 
+    padding-top: $headerheight
+    padding-bottom: 180px
+
+.section 
+    position: relative
+    background-size: cover
+    background-repeat: no-repeat
+    background-position: center
+    padding-top: 50px
+    padding-bottom: 50px
+    // &:last-child
+    //     padding-bottom: 90px
+    &__box 
+        margin-bottom: 20px
+        &:last-child
+            margin-bottom: 0
+    &--headline 
+        padding-top: 0
+        padding-bottom: 0
+        text-align: center
+        margin-top: -$headerheight
+        color: var(--color-white)
+        background-image: linear-gradient(343deg, #f76f65, #f76e64, #ec3c35 70%)
+        .container
+            padding-top: 2 * $headerheight + 50px
+            height: 100%
+// asdasd
+$primary: #57b8f1
+$gray: #efefef
+$gray-light: #f3f3f3
+$gray-dark: #797979
+$gray-bg: #e5e5e5
+$black: #212121
+$black-dark: #000000
+$black-light: #434343
+$white: #ffffff
+$green: #69cc69
+$yellow: #f6dd4b
+$yellow-light: #fffcec
+$orange: #feebcd
+$purple: #882ff6
+
+%bgabsolute
+    content: ""
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    pointer-events: none
+
+=shadow($color)
+	box-shadow: 8px 8px 0 0 $color
+.inner--sm.container
+    max-width: 730px
+    margin-left: auto
+    margin-right: auto
+.section
+    text-align: center
+    .title 
+        font-size: 25px
+        font-weight: bold
+        // font-family: var(--font-family-secondary)
+        color: var(--color-primary)
+        text-transform: uppercase
+    p 
+        font-size: 15px
+        margin-bottom: 20px
+        &:last-child
+            margin-bottom: 0
+    &__head 
+        margin-bottom: 25px
+    &--headline 
+// asdasd
+
+@media(min-width:768px)
+    .hide-md
+        display: none !important
+
+    .visible-md 
+        display: block !important
+    
+
+@media(min-width:992px)
+    .hide-lg 
+        display: none !important
+    
+    .visible-lg 
+        display: block !important
+
+    
+    //header
+    $headerheight: 90px
+    header 
+        &.fixed 
+            .header
+                &__nav 
+                    padding-top: 0
+        .header
+            &__col 
+                display: flex
+                justify-content: space-between
+                align-items: center
+                &_left 
+                    min-height: $headerheight
+            &__nav
+                background-color: transparent
+                position: static
+                text-align: left
+                pointer-events: auto
+                overflow: initial
+                transform: none
+                padding-top: 0
+                &_inner
+                    padding: 0
+                    &_list
+                        display: flex
+                        li 
+                            margin-left: 45px
+                            margin-top: 0
+                            a 
+                                font-size: 18px
+                                opacity: 1
+                                transform: scale(1) translateY(0)
+    
+    //section
+    .main 
+        padding-top: $headerheight
+    .section
+        &--headline 
+            margin-top: -$headerheight
+            .container
+                padding-top: 120px
+
+
