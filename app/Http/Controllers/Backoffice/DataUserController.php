@@ -11,7 +11,7 @@ class DataUserController extends Controller
     //
     public function index()
     {
-        return view('backoffice/apps/visitor.index');
+        return view('backoffice/apps/users.index');
     }
 
     public function GetUser(Request $request)
@@ -52,5 +52,10 @@ class DataUserController extends Controller
         ->orWhere('no_hp', 'LIKE', '%' . $search . '%')
         ->orWhere('email', 'LIKE', '%' . $search . '%')
         ->skip($start)->limit($length)->orderBy('created_at', 'DESC')->get();
+    }
+
+    public function ShowAddUser()
+    {
+        return view('backoffice/apps/users.tambah');
     }
 }

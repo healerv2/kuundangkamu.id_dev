@@ -23,43 +23,45 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
-            <a href="{{url('')}}/superadmin/dashboard" class="nav-link active">
+          <li class="nav-item">
+            <a href="{{url('')}}/superadmin/dashboard" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
-                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+          </li>
+           <li class="nav-item">
+            <a href="{{url('')}}/superadmin/user" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                Data User
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{url('')}}/superadmin/user" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
-                Master Data
-                <i class="fas fa-angle-left right"></i>
+                Data Template
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/layout/top-nav.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Demo Template</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{url('')}}/superadmin/user" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Data User</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/layout/boxed.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Data User Accounting</p>
-                </a>
-              </li>
-            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="{{url('')}}/superadmin/user" class="nav-link">
+              <i class="nav-icon fas fa-shopping-cart"></i>
+              <p>
+                Data Produk
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{url('')}}/superadmin/user" class="nav-link">
+              <i class="nav-icon fas fa-cart-arrow-down"></i>
+              <p>
+                Data Orders
+              </p>
+            </a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">

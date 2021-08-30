@@ -40,28 +40,33 @@
       <div class="card">
         <div class="card-header">
           <h3 class="card-title">List Data User</h3>
+          <a href="{{ url('superadmin/user/add') }}" class="btn btn-primary btn-sm float-right">Add </a>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
           <table id="example1" class="table table-bordered table-striped">
             <thead>
               <tr>
-                <th>Rendering engine</th>
-                <th>Browser</th>
-                <th>Platform(s)</th>
-                <th>Engine version</th>
-                <th>CSS grade</th>
-                <th>CSS grade</th>
+                  <th>Id</th>
+                  <th>Name</th>
+                  <th>Username</th>
+                  <th>Address</th>
+                  <th>Phone</th>
+                  <th>Email</th>
+                  <th>Level</th>
+                  <th>Action</th>
               </tr>
             </thead>
             <tfoot>
               <tr>
-                <th>Rendering engine</th>
-                <th>Browser</th>
-                <th>Platform(s)</th>
-                <th>Engine version</th>
-                <th>CSS grade</th>
-                <th>CSS grade</th>
+                  <th>Id</th>
+                  <th>Name</th>
+                  <th>Username</th>
+                  <th>Address</th>
+                  <th>Phone</th>
+                  <th>Email</th>
+                  <th>Level</th>
+                  <th>Action</th>
               </tr>
             </tfoot>
           </table>
@@ -85,18 +90,15 @@
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
       "paging": true,
       "lengthChange": false,
-      "searching": false,
+      "searching": true,
       "ordering": true,
       "info": true,
-      "autoWidth": false,
+      "autoWidth": true,
       "responsive": true,
-      "start": 0,
-        "length": 10,
+      //dom: 'lBfrtip',
       ajax: function(data, callback){
       $.ajax({
         url: '{{ url('/')}}/superadmin/user/ajax',
@@ -117,24 +119,25 @@
     },
     columns: [
         { data: 'id', name: 'Id' },
-         //  { data: null,sortable: false,
+         //  { data: null,sortable: false, 
          //    render: function (data, type, row, meta) {
          //     return meta.row + meta.settings._iDisplayStart + 1;
-         //   }
+         //   }  
          // },
-         { data: 'name', name: 'Nama' },
-         { data: 'username', name: 'Nip' },
-         { data: 'address', name: 'Jabatan' },
-         { data: 'phone', name: 'No Hp' },
-         { data: 'email', name: 'Email' },
+         { data: 'name', name: 'name' },
+         { data: 'username', name: 'username' },
+         { data: 'address', name: 'address' },
+         { data: 'phone', name: 'phone' },
+         { data: 'email', name: 'email' },
+         { data: 'level', name: 'level' },
          { data: null, mRender: function(data, type, full) {
 
-          return `<a class="btn btn-primary btn-sm" onclick="return confirm('Anda yakin akan menghapus data ini?');" href="{{url('')}}/backoffice/penyelia/delete/${data.id}">
-          <i class="fa fa-trash"></i> Delete</a>
-          <a class="btn btn-primary btn-sm" href="{{url('')}}/backoffice/penyelia/edit/${data.id}">
-          <i class="fa fa-pencil"></i> Edit</a>
-          <a class="btn btn-danger btn-sm" href="{{url('')}}/backoffice/penyelia/getreset/${data.id}">
-          <i class="fa fa-send"></i> Reset Password</a>
+          return `<a class="btn btn-primary btn-sm" onclick="return confirm('Anda yakin akan menghapus data ini?');" href="{{url('')}}/backoffice/penyelia/delete/${data.id}"> 
+          Delete</a>
+          <a class="btn btn-primary btn-sm" href="{{url('')}}/backoffice/penyelia/edit/${data.id}"> 
+          Edit</a>
+          <a class="btn btn-danger btn-sm" href="{{url('')}}/backoffice/penyelia/getreset/${data.id}"> 
+          Reset Password</a>
           `;
 
         }
@@ -146,4 +149,4 @@
     });
   });
 </script>
-@endpush
+@endpush 

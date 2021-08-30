@@ -49,6 +49,7 @@ Route::group(['middleware' => ['auth']], function () {
                 Route::get('/dashboard',[DashboardController::class,'index']);
                 Route::get('/user',[DataUserController::class,'index']);
                 Route::get('/user/ajax',[DataUserController::class,'GetUser']);
+                Route::get('/user/add',[DataUserController::class,'ShowAddUser']);
             });
 
         });
