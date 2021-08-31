@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeRegisterController;
 //superadmin
 use App\Http\Controllers\Backoffice\DashboardController;
 use App\Http\Controllers\Backoffice\DataUserController;
+use App\Http\Controllers\Backoffice\ProductController;
 
 //accounting
 use App\Http\Controllers\Accounting\DashAccontingController;
@@ -42,30 +43,37 @@ Route::get('signup', function () {
 
 Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['ceks_login:superadmin']], function () {
-        /*
-            Route Khusus untuk role superadmin
-        */
+
             Route::prefix('/superadmin')->group(function() {
                 Route::get('/dashboard',[DashboardController::class,'index']);
+                //user
                 Route::get('/user',[DataUserController::class,'index']);
                 Route::get('/user/ajax',[DataUserController::class,'GetUser']);
                 Route::get('/user/add',[DataUserController::class,'ShowAddUser']);
+                Route::post('/user/save',[DataUserController::class,'AddUser']);
+                Route::get('/user/edit/{id}',[DataUserController::class,'EditUser']);
+                Route::post('/user/update/{id}',[DataUserController::class,'UpdateUser']);
+                Route::get('/user/delete/{id}',[DataUserController::class,'DeleteUser']);
+                //product
+                Route::get('/product',[ProductController::class,'index']);
+                Route::get('/product/ajax',[ProductController::class,'GetProduct']);
+                Route::get('/product/add',[ProductController::class,'ShowAddProduct']);
+                Route::post('/product/save',[ProductController::class,'AddProduct']);
+                Route::get('/product/edit/{id}',[ProductController::class,'EditProduct']);
+                Route::post('/product/update/{id}',[ProductController::class,'UpdateProduct']);
+                Route::get('/product/delete/{id}',[ProductController::class,'DeleteProduct']);
             });
 
         });
     Route::group(['middleware' => ['ceks_login:accounting']], function () {
-        /*
-            Route Khusus untuk role accounting
-        */
+        
             Route::prefix('/accounting')->group(function() {
                 Route::get('/dashboard',[DashAccontingController::class,'index']);
             });
 
         });
     Route::group(['middleware' => ['ceks_login:visitor']], function () {
-        /*
-            Route Khusus untuk role visitor
-        */
+        
             Route::prefix('/visitor')->group(function() {
                 Route::get('/public',[DashVisitorController::class,'index']);
             });

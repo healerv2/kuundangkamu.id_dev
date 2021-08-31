@@ -8,11 +8,11 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Add User</h1>
+          <h1>Edit User</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">add</a></li>
+            <li class="breadcrumb-item"><a href="#">edit</a></li>
             <li class="breadcrumb-item active">users</li>
           </ol>
         </div>
@@ -30,11 +30,11 @@
           <!-- Horizontal Form -->
           <div class="card card-info">
             <div class="card-header">
-              <h3 class="card-title">Form Add Users</h3>
+              <h3 class="card-title">Form Edit Users</h3>
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            <form class="form-horizontal" action="{{ url('/superadmin/user/save') }}" method="post">
+            <form class="form-horizontal" action="{{ url('/superadmin/user/update',$users->id) }}" method="post">
              {{ csrf_field() }}
              <div class="card-body">
                @if ($errors->any())
@@ -64,37 +64,31 @@
               <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
+                  <input type="text" class="form-control" id="name" name="name" value="{{$users->name}}" placeholder="Name" required>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-2 col-form-label">Username</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+                  <input type="text" class="form-control" id="username" name="username" value="{{$users->username}}" placeholder="Username" required>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-10">
-                  <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                  <input type="email" class="form-control" id="email" name="email" value="{{$users->email}}" placeholder="Email" required>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-2 col-form-label">Phone (Wa)</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone (WA)" required>
+                  <input type="text" class="form-control" id="phone" name="phone" value="{{$users->phone}}" placeholder="Phone (WA)" required>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-2 col-form-label">Address</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="address" name="address" placeholder="Address" required>
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-                <div class="col-sm-10">
-                  <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                  <input type="text" class="form-control" id="address" name="address" value="{{$users->address}}" placeholder="Address" required>
                 </div>
               </div>
               <div class="form-group row">
@@ -102,16 +96,15 @@
                 <div class="col-sm-10">
                   <select class="form-control select2" id="level" name="level" style="width: 100%;" required>
                     <option selected="selected">Level User</option>
-                    <option value="superadmin">Superadmin</option>
-                    <option value="accounting">Accounting</option>
-                    <option value="visitor">Vistor/User</option>
+                    <option value="superadmin" {{($users->level ==='superadmin') ? 'selected' : ''}}> Superadmin </option>
+                    <option value="accounting" {{($users->level ==='accounting') ? 'selected' : ''}}> Accounting </option>
+                    <option value="visitor" {{($users->level ==='visitor') ? 'selected' : ''}}> Visitor/user </option>
                   </select>
                 </div>
               </div>
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-              <button type="reset" class="btn btn-default ">Reset</button>
               <a href="{{ url('/') }}/superadmin/user" class="btn btn-danger">Cancel</a>
               <button type="submit" class="btn btn-primary float-right">Save</button>
             </div>

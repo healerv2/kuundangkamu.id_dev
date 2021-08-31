@@ -58,4 +58,66 @@ class DataUserController extends Controller
     {
         return view('backoffice/apps/users.tambah');
     }
+
+    public function AddUser(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'username' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            'password'=> 'required',
+            'level'=> 'required'
+
+        ]);
+        $findUser = User::where('username', $request->username)->first();
+        if ($findUser != null) {
+            return redirect('superadmin/user')->with('alert-failed', 'Gagal, username sudah tersimpan !');
+        }
+        User::create([
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'password' => bcrypt($request->password),
+            'level' => $request->level
+        ]);
+        return redirect('superadmin/user')->with('alert-success', 'Data user berhasil ditambahkan !');
+    }
+
+    public function EditUser($id)
+    {   
+        $users = User::findOrFail($id);
+        return view('backoffice/apps/users.edit',compact('users'));
+    }
+
+    public function UpdateUser(Request $request, $id)
+    {
+        $validateData = $request->validate([
+            'name' => 'required',
+            'username' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            'level'=> 'required'
+        ]);
+        User::whereId($id)->update([
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'level' => $request->level
+        ]);
+        return redirect('superadmin/user')->with('alert-success', 'Data user berhasil diupdate !');
+    }
+
+    public function DeleteUser(Request $request)
+    {
+        $users = User::findOrFail($request->segment(4));
+        $users->delete();
+        return redirect('superadmin/user')->with('alert-success', 'Data user berhasil dihapus !');
+    }
 }

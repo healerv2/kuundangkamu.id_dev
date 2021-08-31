@@ -48,7 +48,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{url('')}}/superadmin/user" class="nav-link">
+            <a href="{{url('')}}/superadmin/product" class="nav-link">
               <i class="nav-icon fas fa-shopping-cart"></i>
               <p>
                 Data Produk
@@ -60,6 +60,14 @@
               <i class="nav-icon fas fa-cart-arrow-down"></i>
               <p>
                 Data Orders
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="pages/gallery.html" class="nav-link">
+              <i class="nav-icon fas fa-money-bill-wave"></i>
+              <p>
+                Payment
               </p>
             </a>
           </li>
@@ -93,14 +101,6 @@
               <p>
                 Status Server
                 <span class="badge badge-info right">2</span>
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="pages/gallery.html" class="nav-link">
-              <i class="nav-icon far fa-image"></i>
-              <p>
-                Payment
               </p>
             </a>
           </li>

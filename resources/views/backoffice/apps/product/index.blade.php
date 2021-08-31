@@ -6,12 +6,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Data User</h1>
+          <h1>Data Product</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Data User</li>
+            <li class="breadcrumb-item active">Product</li>
           </ol>
         </div>
       </div>
@@ -39,21 +39,20 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">List Data User</h3>
-              <a href="{{ url('superadmin/user/add') }}" class="btn btn-primary btn-sm float-right">Add Data User</a>
+              <h3 class="card-title">List Product</h3>
+              <a href="{{ url('superadmin/product/add') }}" class="btn btn-primary btn-sm float-right">Add Product</a>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                   <tr>
-                    <th>No</th>
-                    <th>Name</th>
-                    <th>Username</th>
-                    <th>Address</th>
-                    <th>Phone</th>
-                    <th>Email</th>
-                    <th>Level</th>
+                    <th>Id</th>
+                    <th>Nama Product</th>
+                    <th>Sub harga</th>
+                    <th>Diskon (%)</th>
+                    <th>Harga</th>
+                    <th>Keterangan</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -87,7 +86,7 @@
       "responsive": true,
       ajax: function(data, callback){
         $.ajax({
-          url: '{{ url('/')}}/superadmin/user/ajax',
+          url: '{{ url('/')}}/superadmin/product/ajax',
           'data': data,
           dataType: 'json',
           beforeSend: function(){
@@ -104,28 +103,23 @@
             })
       },
       columns: [
-      // { data: 'id', name: 'Id' },
-         { data: null,sortable: false, 
-            render: function (data, type, row, meta) {
-             return meta.row + meta.settings._iDisplayStart + 1;
-           }  
-         },
-         { data: 'name', name: 'name' },
-         { data: 'username', name: 'username' },
-         { data: 'address', name: 'address' },
-         { data: 'phone', name: 'phone' },
-         { data: 'email', name: 'email' },
-         { data: 'level', name: 'level' },
+        { data: 'id', name: 'Id' },
+         // { data: null,sortable: false, 
+         //    render: function (data, type, row, meta) {
+         //     return meta.row + meta.settings._iDisplayStart + 1;
+         //   }  
+         // },
+         { data: 'name_product', name: 'name_product' },
+         { data: 'subharga', name: 'subharga', render: $.fn.dataTable.render.number( ',', '.', ) },
+         { data: 'diskon', name: 'diskon' },
+         { data: 'harga', name: 'harga',render: $.fn.dataTable.render.number( ',', '.', ) },
+         { data: 'keterangan', name: 'keterangan' },
          { data: null, mRender: function(data, type, full) {
 
-          return `<a class="btn btn-primary btn-sm" onclick="return confirm('Anda yakin akan menghapus data ini?');" href="{{url('')}}/superadmin/user/delete/${data.id}"> 
+          return `<a class="btn btn-primary btn-sm" onclick="return confirm('Anda yakin akan menghapus data ini?');" href="{{url('')}}/superadmin/product/delete/${data.id}"> 
           Delete</a>
-          <a class="btn btn-primary btn-sm" href="{{url('')}}/superadmin/user/edit/${data.id}"> 
-          Edit</a>
-          <a class="btn btn-danger btn-sm" href="{{url('')}}/backoffice/penyelia/getreset/${data.id}"> 
-          Reset Password</a>
-          `;
-
+          <a class="btn btn-primary btn-sm" href="{{url('')}}/superadmin/product/edit/${data.id}"> 
+          Edit</a>`;
         }
       }
       ],
