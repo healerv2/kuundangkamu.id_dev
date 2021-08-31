@@ -71,9 +71,9 @@ class DataUserController extends Controller
             'level'=> 'required'
 
         ]);
-        $findUser = User::where('username', $request->username)->first();
+        $findUser = User::where('email', $request->email)->first();
         if ($findUser != null) {
-            return redirect('superadmin/user')->with('alert-failed', 'Gagal, username sudah tersimpan !');
+            return redirect('superadmin/user')->with('alert-failed', 'Gagal, email sudah tersimpan !');
         }
         User::create([
             'name' => $request->name,
