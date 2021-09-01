@@ -1,4 +1,4 @@
-$primary: #b9117d
+$primary: #d97031
 $gray: #efefef
 $gray-light: #f3f3f3
 $gray-dark: #797979
@@ -362,147 +362,87 @@ main.lazyloaded
 
 //header
 $headerheight: 60px
-header
+.nav
     position: fixed
-    top: 0
+    bottom: 0
     left: 0
     right: 0
     z-index: 10
-    // background-color: var(--color-white)
-    background-image: linear-gradient(to left, #d97031, skyblue)
+    margin: 15px
+    background-color: var(--color-primary)
+    background-image: linear-gradient(to left, #d97031, rgba(255, 255, 255, 0.8), skyblue)
     color: var(--color-black)
     transition: .5s ease
-    &.fixed
-        .header
-            box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.5)
-            background-image: linear-gradient(to left, #d97031, skyblue)
-            &__col_left 
-                min-height: 70px
-    .header
-        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.5)
-        background-image: linear-gradient(to left, #d97031, skyblue)
-        &__logo img
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.5)
+    border-radius: 30px
+    .container
+        padding-left: 0
+        padding-right: 0
+    &__left
+        display: none
+        .logo img
             object-fit: contain
             object-position: left center
-        &__col
-            &_left
+    &__right
+        text-align: center
+        z-index: 11
+        display: flex
+        align-items: center
+        justify-content: space-around
+        min-height: 100%
+        li 
+            a 
                 position: relative
-                display: flex
-                justify-content: space-between
-                align-items: center
-                transition: min-height .5s ease
-                min-height: $headerheight
-                margin-left: -20px
-                margin-right: -20px
-                padding-left: 20px
-                padding-right: 20px
-                &_right 
-                    .hamburger 
-                        display: flex
-                        align-items: center
-                        justify-content: center
-                        margin-right: -20px
-                        padding-left: 20px
-                        padding-right: 20px
-                        min-width: 76px
-                        min-height: 60px
-                        position: relative
-                        z-index: 12
-                        &.collapsed
-                            .hamburger-box-inner 
-                                // background-color: var(--color-white)
-                                &::before,
-                                &::after
-                                    width: 24px
-                                    // background-color: var(--color-white)
-                                &::before
-                                    top: -6px
-                                    transform: translate3d(-6px, 0, 0) rotate(-45deg) scale(0.7, 1)
-                                &::after
-                                    bottom: -6px
-                                    transform: translate3d(-6px, 0, 0) rotate(45deg) scale(0.7, 1)
-                        &-box
-                            width: 36px
-                            height: 18px
-                            display: inline-block
-                            position: relative
-                            &-inner,
-                            &-inner::before, 
-                            &-inner::after
-                                content: ""
-                                display: block
-                                width: 100%
-                                height: 2px
-                                border-radius: 8px
-                                background-color: var(--color-white)
-                                position: absolute
-                                transition-property: transform
-                                transition-duration: 0.15s
-                                transition-timing-function: ease
-                            &-inner
-                                top: 50%
-                                margin-top: -2px
-                                &::before
-                                    top: -8px
-                                &::after
-                                    bottom: -8px
-                                
-        &__nav 
-            text-align: center
-            -webkit-transform: translate3d(100%, 0, 0)
-            transform: translate3d(100%, 0, 0)
-            background-color: var(--color-black)
-            color: var(--color-white)
-            z-index: 11
-            &.open 
-                .header__nav_inner
-                    &_list li a
-                        opacity: 1
-                        transform: scale(1) translateY(0)
-            &_bg 
-                position: fixed
-                left: 0
-                right: 0
-                top: 0
-                bottom: 0
-                width: 100%
-                height: 100%
-                background-color: rgba($black, .6)
+                display: inline-block
+                font-size: 20px
+                padding-top: 5px
+                padding-bottom: 5px
+                border-bottom: 3px solid transparent
+                color: var(--color-black)
+                transform: scale(1)
+                transition: .5s ease
+                &:hover 
+                    border-bottom-color: var(--color-white)
+            &.active a
+                border-bottom-color: var(--color-white)
+            span
                 display: none
-            &_inner
-                padding: 0 15px
-                display: flex
-                align-items: center
-                justify-content: center
-                min-height: 100%
-                &_list li 
-                    // margin-top: 50px
+            @for $i from 1 through 6
+                &:nth-child(#{$i}) a
+                    transition-delay: (#{$i * .3s})
+        &_profil
+            position: relative
+            >ul
+                position: absolute
+                bottom: 100%
+                opacity: 0
+                transition: all .5s ease
+                pointer-events: none
+                &.show
+                    opacity: 1
+                    pointer-events: auto
+                    li
+                        transform: translate3d(0, 0, 0)
+                        opacity: 1
+                        transition: all .5s ease, opacity .3s .5s ease
+                li
+                    transform: translate3d(0, 100%, 0)
+                    transition: .5s ease,opacity .3s .4s ease
+                    opacity: 0
+                    background: var(--color-primary)
+                    z-index: 0
+                    width: 40px
+                    height: 40px
+                    margin-left: -10px
+                    border-radius: 50%
+                    margin-bottom: 10px
                     &:first-child
-                        margin-top: 0
-                    a 
-                        position: relative
-                        display: inline-block
-                        font-size: 20px
-                        padding-top: 5px
-                        padding-bottom: 5px
-                        border-bottom: 2px solid transparent
-                        opacity: 0
-                        transform: scale(0.95) translateX(30px)
-                        transition: .5s ease
-                        &:hover 
-                            border-bottom-color: var(--color-primary)
-                    &.active a
-                        border-bottom-color: var(--color-white)
-                @for $i from 1 through 10
-                    &:nth-child(#{$i}) a
-                        transition-delay: (#{$i * .3s})
+                        transition-delay: .5s
+                    &:last-child
+                        transition-delay: .3s
 
-.unstyled 
-    margin: 0
-    padding: 0
-    list-style: none
-    line-height: 1.6em
-
+.m-hide
+    display: none
 //section
 .main 
     padding-top: $headerheight
@@ -531,21 +471,6 @@ header
         .container
             padding-top: 2 * $headerheight + 50px
             height: 100%
-// asdasd
-$primary: #57b8f1
-$gray: #efefef
-$gray-light: #f3f3f3
-$gray-dark: #797979
-$gray-bg: #e5e5e5
-$black: #212121
-$black-dark: #000000
-$black-light: #434343
-$white: #ffffff
-$green: #69cc69
-$yellow: #f6dd4b
-$yellow-light: #fffcec
-$orange: #feebcd
-$purple: #882ff6
 
 %bgabsolute
     content: ""
@@ -578,7 +503,6 @@ $purple: #882ff6
     &__head 
         margin-bottom: 25px
     &--headline 
-// asdasd
 
 @media(min-width:768px)
     .hide-md
@@ -640,3 +564,7 @@ $purple: #882ff6
                 padding-top: 120px
 
 
+
+        
+      
+  

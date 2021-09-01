@@ -2,7 +2,7 @@
     fofofofo
   </footer>
 
-</div>
+</main>
 <!-- ./wrapper -->
 
 <!-- jQuery -->
