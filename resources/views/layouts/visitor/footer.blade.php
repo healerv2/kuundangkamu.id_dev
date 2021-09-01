@@ -1,5 +1,5 @@
 <footer class="main-footer">
-    footer
+    fofofofo
   </footer>
 
 </div>
@@ -13,5 +13,5 @@
 <script src="{{url('')}}/assets/plugins/moment/moment.min.js"></script>
 <script src="{{url('')}}/assets/plugins/daterangepicker/daterangepicker.js"></script>
 <!-- form -->
-<script src="{{url('')}}/assets/dist/js/form.js"></script>
+<script src="{{url('')}}/js/user.js"></script>
 @stack('scripts')
