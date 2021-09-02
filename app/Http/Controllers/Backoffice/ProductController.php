@@ -53,4 +53,63 @@ class ProductController extends Controller
         ->orWhere('keterangan', 'LIKE', '%' . $search . '%')
         ->skip($start)->limit($length)->orderBy('created_at', 'DESC')->get();
     }
+
+    public function ShowAddProduct()
+    {
+        return view('backoffice/apps/product.tambah');
+    }
+
+    public function AddProduct(Request $request)
+    {
+        $request->validate([
+            'name_product' => 'required',
+            'subharga' => 'required',
+            'diskon' => 'required',
+            'harga'=> 'required'
+
+        ]);
+        $findProduct = Product::where('name_product', $request->name_product)->first();
+        if ($findProduct != null) {
+            return redirect('superadmin/product')->with('alert-failed', 'Gagal, Product sudah tersimpan !');
+        }
+        Product::create([
+            'name_product' => $request->name_product,
+            'subharga' => $request->subharga,
+            'diskon' => $request->diskon,
+            'harga' => $request->harga,
+            'keterangan' => $request->keterangan
+        ]);
+        return redirect('superadmin/product')->with('alert-success', 'Data product berhasil ditambahkan !');
+    }
+
+    public function EditProduct($id)
+    {   
+        $product = Product::findOrFail($id);
+        return view('backoffice/apps/product.edit',compact('product'));
+    }
+
+    public function UpdateProduct(Request $request, $id)
+    {
+        $validateData = $request->validate([
+            'name_product' => 'required',
+            'subharga' => 'required',
+            'diskon' => 'required',
+            'harga'=> 'required'
+        ]);
+        Product::whereId($id)->update([
+           'name_product' => $request->name_product,
+            'subharga' => $request->subharga,
+            'diskon' => $request->diskon,
+            'harga' => $request->harga,
+            'keterangan' => $request->keterangan
+        ]);
+        return redirect('superadmin/product')->with('alert-success', 'Data product berhasil diupdate !');
+    }
+
+    public function DeleteProduct(Request $request)
+    {
+        $product = Product::findOrFail($request->segment(4));
+        $product->delete();
+        return redirect('superadmin/product')->with('alert-success', 'Data product berhasil dihapus !');
+    }
 }
