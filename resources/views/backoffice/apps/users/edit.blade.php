@@ -106,7 +106,7 @@
             <!-- /.card-body -->
             <div class="card-footer">
               <a href="{{ url('/') }}/superadmin/user" class="btn btn-danger">Cancel</a>
-              <button type="submit" class="btn btn-primary float-right">Save</button>
+              <button type="submit" class="btn btn-primary float-right">Update</button>
             </div>
             <!-- /.card-footer -->
           </form>

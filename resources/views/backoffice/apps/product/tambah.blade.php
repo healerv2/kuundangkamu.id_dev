@@ -8,12 +8,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Add User</h1>
+          <h1>Add Product</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">add</a></li>
-            <li class="breadcrumb-item active">users</li>
+            <li class="breadcrumb-item active">product</li>
           </ol>
         </div>
       </div>
@@ -30,11 +30,11 @@
           <!-- Horizontal Form -->
           <div class="card card-info">
             <div class="card-header">
-              <h3 class="card-title">Form Add Users</h3>
+              <h3 class="card-title">Form Add Product</h3>
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            <form class="form-horizontal" action="{{ url('/superadmin/user/save') }}" method="post">
+            <form class="form-horizontal" action="{{ url('/superadmin/product/save') }}" method="post">
              {{ csrf_field() }}
              <div class="card-body">
                @if ($errors->any())
@@ -62,57 +62,40 @@
               </div>
               @endif
               <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Name Product</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
+                  <input type="text" class="form-control" id="name_product" name="name_product" placeholder="Name Product" required>
                 </div>
               </div>
               <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-2 col-form-label">Username</label>
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Subharga</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+                  <input type="number" class="form-control" name="subharga" id="subharga" placeholder="Subharga" required>
                 </div>
               </div>
               <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Diskon (%)</label>
                 <div class="col-sm-10">
-                  <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                  <input type="number" class="form-control" name="diskon" id="diskon" placeholder="Diskon" required>
                 </div>
               </div>
               <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-2 col-form-label">Phone (Wa)</label>
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Harga Akhir</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone (WA)" required>
+                  <input type="number" class="form-control" name="harga" id="harga" placeholder="Harga" required>
                 </div>
               </div>
               <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-2 col-form-label">Address</label>
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Keterangan</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="address" name="address" placeholder="Address" required>
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-                <div class="col-sm-10">
-                  <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="inputPassword3" class="col-sm-2 col-form-label">Level User</label>
-                <div class="col-sm-10">
-                  <select class="form-control select2" id="level" name="level" style="width: 100%;" required>
-                    <option selected="selected">Level User</option>
-                    <option value="superadmin">Superadmin</option>
-                    <option value="accounting">Accounting</option>
-                    <option value="visitor">Vistor/User</option>
-                  </select>
+                  <input type="text" class="form-control" name="keterangan" id="Keterangan" placeholder="Keterangan">
                 </div>
               </div>
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
               <button type="reset" class="btn btn-default ">Reset</button>
-              <a href="{{ url('/') }}/superadmin/user" class="btn btn-danger">Cancel</a>
+              <a href="{{ url('/') }}/superadmin/product" class="btn btn-danger">Cancel</a>
               <button type="submit" class="btn btn-primary float-right">Save</button>
             </div>
             <!-- /.card-footer -->
@@ -130,13 +113,19 @@
 @stop
 @push('scripts')
 <script>
- $(function () {
-    //Initialize Select2 Elements
+   $(function () {
     $('.select2').select2()
+})
+   $(document).ready(function () {
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
-    //Initialize Select2 Elements
-    $('.select2bs4').select2({
-      theme: 'bootstrap4'
-    })  
-  });
- @endpush 
+    $( "#diskon" ).keyup(function() {
+        var subharga = parseInt($( "#subharga" ).val());
+        var diskon = parseInt($( "#diskon" ).val());
+        var hasil = parseInt( subharga * (diskon/100));
+        $("#harga").val(subharga - hasil);
+    });
+
+});
+</script>
+@endpush

@@ -7,6 +7,8 @@ use Laravel\Socialite\Facades\Socialite;
 use Exception;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Services\Zuwinda;
+use DB;
 
 class HomeRegisterController extends Controller
 {
@@ -52,6 +54,49 @@ class HomeRegisterController extends Controller
       
         } catch (Exception $e) {
             dd($e->getMessage());
+        }
+    }
+
+    public function RegisterUsers(Request $request, Zuwinda $zuwinda)
+    {
+        $request->validate([
+            'name' => 'required',
+            'username' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'password'=> 'required'
+        ]);
+
+        $otp = rand(1000, 9999);
+
+        $register = User::create([
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'password' => bcrypt($request->password),
+            'level' => 'visitor'
+        ]);
+        $this->sendWhatsappOtp($otp, $register->phone);
+        return $register;
+    }
+
+    public function CheckOtp(Request $request)
+    {
+       if($request->get('otp'))
+       {
+          $otp = $request->get('otp');
+          $data = DB::table("users")
+          ->where('otp', $otp)
+          ->count();
+          if($data > 0)
+          {
+             echo 'not_unique';
+         }
+         else
+         {
+             echo 'unique';
+         }
         }
     }
 }

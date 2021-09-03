@@ -34,8 +34,10 @@ Route::get('login',[HomeLoginController::class,'index'])->name('login');
 Route::post('action_login',[HomeLoginController::class,'action_login'])->name('action_login');
 Route::get('logout',[HomeLoginController::class,'action_logout'])->name('logout');
 Route::get('register',[HomeRegisterController::class,'index'])->name('register');
+Route::post('otp/check',[HomeRegisterController::class,'CheckOtp'])->name('cek_otp');
 Route::get('auth/google', [HomeRegisterController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [HomeRegisterController::class, 'handleGoogleCallback']);
+
 
 Route::get('signup', function () {
     return view('visitor/apps/signup');
