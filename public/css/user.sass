@@ -183,7 +183,7 @@ button
 body
     margin: 0
     padding: 0
-    font-size: 14px
+    font-size: 16px
     font-weight: normal
     color: var(--color-black)
     background-color: var(--color-white)
@@ -192,7 +192,7 @@ body
 
 .container 
     position: relative
-    max-width: 980px
+    max-width: 1200px
     margin-left: auto
     margin-right: auto
     padding-left: 20px
@@ -369,12 +369,8 @@ $headerheight: 60px
     right: 0
     z-index: 10
     margin: 15px
-    background-color: var(--color-primary)
-    background-image: linear-gradient(to left, #d97031, rgba(255, 255, 255, 0.8), skyblue)
     color: var(--color-black)
     transition: .5s ease
-    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.5)
-    border-radius: 30px
     .container
         padding-left: 0
         padding-right: 0
@@ -390,6 +386,10 @@ $headerheight: 60px
         align-items: center
         justify-content: space-around
         min-height: 100%
+        background-color: var(--color-primary)
+        background-image: linear-gradient(to left, #d97031, rgba(255, 255, 255, 0.8), skyblue)
+        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.5)
+        border-radius: 30px
         li 
             a 
                 position: relative
@@ -467,11 +467,27 @@ $headerheight: 60px
         text-align: center
         margin-top: -$headerheight
         color: var(--color-white)
-        background-image: linear-gradient(343deg, #f76f65, #f76e64, #ec3c35 70%)
+        // background-image: linear-gradient(343deg, #f76f65, #f76e64, #ec3c35 70%)
         .container
             padding-top: 2 * $headerheight + 50px
             height: 100%
-
+    &-price
+        h1
+            font-size: clamp(1.5rem, 5vw, 3rem)
+        h2
+            font-size: clamp(1.3rem, 4vw, 2.5rem)
+        li
+            font-size: clamp(1rem, 2vw, 1.2rem)
+        .pricing
+            > li
+                border: 1px solid #ececec
+                padding: 20px
+                // width: clamp(300px, 33%, 400px)
+                margin: 20px 10px
+                border-radius: 40px
+                border-top-left-radius: 0
+                flex: 0 1 360px
+                background-color: var(--color-gray-light)
 %bgabsolute
     content: ""
     position: absolute
