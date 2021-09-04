@@ -407,7 +407,7 @@ $headerheight: 60px
                 border-bottom-color: var(--color-white)
             span
                 display: none
-            @for $i from 1 through 6
+            @for $i from 1 through 7
                 &:nth-child(#{$i}) a
                     transition-delay: (#{$i * .3s})
         &_profil
@@ -444,7 +444,7 @@ $headerheight: 60px
 .m-hide
     display: none
 //section
-.main 
+main 
     padding-top: $headerheight
     padding-bottom: 180px
 
@@ -471,23 +471,44 @@ $headerheight: 60px
         .container
             padding-top: 2 * $headerheight + 50px
             height: 100%
+    text-align: center    
+    h1
+        font-size: clamp(1.5rem, 5vw, 3rem)
+    h2
+        font-size: clamp(1.3rem, 4vw, 2.5rem)
+    li
+        font-size: clamp(1rem, 2vw, 1.2rem)
     &-price
-        h1
-            font-size: clamp(1.5rem, 5vw, 3rem)
-        h2
-            font-size: clamp(1.3rem, 4vw, 2.5rem)
-        li
-            font-size: clamp(1rem, 2vw, 1.2rem)
         .pricing
+            align-content: stretch
             > li
-                border: 1px solid #ececec
-                padding: 20px
                 // width: clamp(300px, 33%, 400px)
-                margin: 20px 10px
-                border-radius: 40px
-                border-top-left-radius: 0
-                flex: 0 1 360px
-                background-color: var(--color-gray-light)
+                padding: 10px 0
+                flex: 0 1 100%
+                position: relative
+                &::after
+                    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2)
+                    left: 10px
+                    top: 10px
+                    right: 10px
+                    bottom: 10px
+                    background-color: rgba(255, 255, 255, 0.3)
+                    backdrop-filter: blur(10px) saturate(100%) contrast(45%) brightness(130%)
+                    content: ''
+                    position: absolute
+                    z-index: 0
+                    border-radius: 40px
+                    border-top-left-radius: 0
+                a
+                    text-align: center
+                    height: 100%
+                    border: 1px solid #ececec
+                    display: block
+                    padding: 20px
+                    border-radius: 40px
+                    border-top-left-radius: 0
+                    z-index: 1
+                    position: relative
 %bgabsolute
     content: ""
     position: absolute
@@ -499,26 +520,62 @@ $headerheight: 60px
 
 =shadow($color)
 	box-shadow: 8px 8px 0 0 $color
-.inner--sm.container
-    max-width: 730px
-    margin-left: auto
-    margin-right: auto
-.section
-    text-align: center
-    .title 
-        font-size: 25px
-        font-weight: bold
-        // font-family: var(--font-family-secondary)
-        color: var(--color-primary)
-        text-transform: uppercase
-    p 
-        font-size: 15px
-        margin-bottom: 20px
-        &:last-child
-            margin-bottom: 0
-    &__head 
-        margin-bottom: 25px
-    &--headline 
+.table
+    &-responsive
+        overflow-x: auto
+table
+    width: 100%
+    min-width: 600px
+    border: 1px solid #ececec
+    border-radius: 10px
+    border-collapse: separate
+    border-spacing: 0
+    overflow: hidden
+    margin-bottom: 0
+    background-color: white
+    thead
+        background-color: #ececec
+    th,td
+        padding: 10px
+    tr
+        position: relative
+        &::after 
+            content: ""
+            position: absolute
+            left: 0
+            right: 0
+            bottom: -1px
+            border-bottom: 1px solid #ececec
+
+.gradient
+    position: fixed
+    left: 0
+    right: 0
+    top: 0
+    bottom: 0
+    width: 100%
+    height: 100%
+    pointer-events: none
+    li
+        width: 75vw
+        height: 75vh
+        position: absolute
+        &.red
+            left: 0
+            top: 0
+            background: radial-gradient(ellipse , #e66465, transparent)
+        &.green
+            right: 0
+            top: 0
+            background: radial-gradient(ellipse , #64e67e, transparent)
+        &.blue
+            bottom: 0
+            left: 0
+            background: radial-gradient(ellipse , #64a7e6, transparent)
+        &.yellow
+            bottom: 0
+            right: 0
+            background: radial-gradient(ellipse , #d9e664, transparent)
 
 @media(min-width:768px)
     .hide-md
@@ -526,6 +583,15 @@ $headerheight: 60px
 
     .visible-md 
         display: block !important
+    .section
+        &-price 
+            .pricing
+                margin-left: -10px
+                margin-right: -10px
+                >li
+                    flex: 0 0 50%
+                    padding-left: 10px
+                    padding-right: 10px
     
 
 @media(min-width:992px)
@@ -536,51 +602,40 @@ $headerheight: 60px
         display: block !important
 
     
-    //header
-    $headerheight: 90px
-    header 
-        &.fixed 
-            .header
-                &__nav 
-                    padding-top: 0
-        .header
-            &__col 
-                display: flex
-                justify-content: space-between
-                align-items: center
-                &_left 
-                    min-height: $headerheight
-            &__nav
-                background-color: transparent
-                position: static
-                text-align: left
-                pointer-events: auto
-                overflow: initial
-                transform: none
-                padding-top: 0
-                &_inner
-                    padding: 0
-                    &_list
-                        display: flex
-                        li 
-                            margin-left: 45px
-                            margin-top: 0
-                            a 
-                                font-size: 18px
-                                opacity: 1
-                                transform: scale(1) translateY(0)
     
     //section
     .main 
         padding-top: $headerheight
-    .section
-        &--headline 
-            margin-top: -$headerheight
-            .container
-                padding-top: 120px
 
-
-
-        
+@media(min-width:1200px)
       
+    .section
+        &-price 
+            .pricing
+                >li
+                    flex: 0 0 33%
+    //header
+    $headerheight: 90px
+    .nav
+        bottom: auto
+        top: 0
+        margin: 0
+        background-image: linear-gradient(to left, #d97031, rgba(255, 255, 255, 0.8), skyblue)
+        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.5)
+        .container
+            display: flex
+            justify-content: space-between
+            padding-left: 20px
+            padding-right: 20px
+                
+        &__left
+            display: inline-block
+        &__right
+            border-radius: 0
+            background: transparent
+            box-shadow: none
+            li 
+                margin-left: 20px
+                span
+                    display: inline-block
   

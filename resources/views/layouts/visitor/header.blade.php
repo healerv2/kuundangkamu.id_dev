@@ -49,7 +49,7 @@
             <span>Kirim Undangan</span>
           </a>
         </li>
-        <li class="nav__right_profil">
+        <li class="nav__right_profil hide-lg">
           <a href="#">
             <i class="fas fa-cog"></i>
             <span>Profil</span>
@@ -69,28 +69,19 @@
             </li>
           </ul>
         </li>
-        <li class="m-hide">
-          <a href="{{url('logout')}}">
-            <i class="nav-icon fas fa-sign-out-alt"></i>
-            <span>log out</span>
-          </a>
-        </li>
-        <li class="m-hide">
+        <li class="visible-lg ">
           <a href="#">
             <i class="fas fa-user-cog"></i>
             <span>Profil</span>
           </a>
         </li>
+        <li class="visible-lg ">
+          <a href="{{url('logout')}}">
+            <i class="nav-icon fas fa-sign-out-alt"></i>
+            <span>log out</span>
+          </a>
+        </li>
       </ul>
-    </div>
-  </header> 
-  <header class="nav">
-    <div class="container">
-      <div class="nav__left">
-        <a href="#" class="logo">
-          <img src="" alt="">
-        </a>
-      </div>
     </div>
   </header> 
   <main role="main">

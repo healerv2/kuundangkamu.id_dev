@@ -4,7 +4,12 @@
 
 </main>
 <!-- ./wrapper -->
-
+<ul class="gradient -unstyled">
+  <li class="red"></li>
+  <li class="green"></li>
+  <li class="blue"></li>
+  <li class="yellow"></li>
+</ul>
 <!-- jQuery -->
 <script src="{{url('')}}/assets/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->

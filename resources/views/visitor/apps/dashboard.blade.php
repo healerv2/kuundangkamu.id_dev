@@ -51,9 +51,53 @@
                 <thead>
                     <tr>
                         <th>Nama</th>
-                        <th></th>
+                        <th>ID</th>
+                        <th>Paket</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
+                <tbody>
+                    <tr>
+                        <td>Taufik</td>
+                        <td>662198431</td>
+                        <td>Basic</td>
+                        <td>
+                            <a href="#">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Taufik</td>
+                        <td>662198431</td>
+                        <td>Basic</td>
+                        <td>
+                            <a href="#">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Taufik</td>
+                        <td>662198431</td>
+                        <td>Basic</td>
+                        <td>
+                            <a href="#">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Taufik</td>
+                        <td>662198431</td>
+                        <td>Basic</td>
+                        <td>
+                            <a href="#">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     </div>
