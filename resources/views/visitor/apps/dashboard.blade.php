@@ -5,19 +5,22 @@
 
         <h1>Pricing</h1>
         <!-- <h1>create page form save di folder vistor/apps/form (lek gk onok create folder)</h1> -->
+        @foreach ($product->chunk(3) as $chunk)
+        {{-- @foreach ($product as $produk) --}}
         <ul class="pricing -unstyled -flex -justify-center">
+            @foreach ($chunk as $produk)
             <li>
                 <a href="#">
-                    <h2>Basic</h2>
+                    <h2>{{ $produk->name_product}}</h2>
                     <ul class="-unstyled">
-                        <li>Lorem ipsum dolor</li>
-                        <li>sit amet consectetur</li>
-                        <li>adipisicing elit</li>
-                        <li>Voluptas fuga ducimus</li>
+                        <li>{{ $produk->subharga}}</li>
+                        <li>{{ $produk->diskon}}</li>
+                        <li>{{ $produk->harga}}</li>
+                        <li>{{ $produk->keterangan}}</li>
                     </ul>
                 </a>
             </li>
-            <li>
+            {{-- <li>
                 <a href="#">
                     <h2>Premium</h2>
                     <ul class="-unstyled">
@@ -28,8 +31,8 @@
                         <li>Voluptas fuga ducimus</li>
                     </ul>
                 </a>
-            </li>
-            <li>
+            </li> --}}
+            {{-- <li>
                 <a href="#">
                     <h2>Eksklusif</h2>
                     <ul class="-unstyled">
@@ -40,8 +43,10 @@
                         <li>Voluptas fuga ducimus</li>
                     </ul>
                 </a>
-            </li>
+            </li> --}}
+            @endforeach
         </ul>
+        @endforeach
     </div>
 </div>
 <div class="section section-history">

@@ -47,12 +47,13 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                   <tr>
-                    <th>Id</th>
+                    <th>No</th>
                     <th>Nama Product</th>
                     <th>Sub harga</th>
                     <th>Diskon (%)</th>
                     <th>Harga</th>
                     <th>Keterangan</th>
+                    <th>Image</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -103,30 +104,34 @@
             })
       },
       columns: [
-        { data: 'id', name: 'Id' },
-         // { data: null,sortable: false, 
-         //    render: function (data, type, row, meta) {
-         //     return meta.row + meta.settings._iDisplayStart + 1;
-         //   }  
-         // },
+      //{ data: 'id', name: 'Id' },
+         { data: null,sortable: false, 
+            render: function (data, type, row, meta) {
+             return meta.row + meta.settings._iDisplayStart + 1;
+           }  
+         },
          { data: 'name_product', name: 'name_product' },
          { data: 'subharga', name: 'subharga', render: $.fn.dataTable.render.number( ',', '.', ) },
          { data: 'diskon', name: 'diskon' },
          { data: 'harga', name: 'harga',render: $.fn.dataTable.render.number( ',', '.', ) },
          { data: 'keterangan', name: 'keterangan' },
-         { data: null, mRender: function(data, type, full) {
+         { data: 'image', mRender: function(data, type, full) {
+           return '<img src="/image/'+data+'" style="height:100px;width:100px;"/>';
+         }
+        },
+        { data: null, mRender: function(data, type, full) {
 
-          return `<a class="btn btn-primary btn-sm" onclick="return confirm('Anda yakin akan menghapus data ini?');" href="{{url('')}}/superadmin/product/delete/${data.id}"> 
-          Delete</a>
-          <a class="btn btn-primary btn-sm" href="{{url('')}}/superadmin/product/edit/${data.id}"> 
-          Edit</a>`;
+        return `<a class="btn btn-primary btn-sm" onclick="return confirm('Anda yakin akan menghapus data ini?');" href="{{url('')}}/superadmin/product/delete/${data.id}"> 
+        Delete</a>
+        <a class="btn btn-primary btn-sm" href="{{url('')}}/superadmin/product/edit/${data.id}"> 
+        Edit</a>`;
         }
       }
-      ],
-      language: {
-        loadingRecords: "&nbsp;",
-        processing: 'Mohon tunggu sedang meload data'},
-      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    ],
+    language: {
+      loadingRecords: "&nbsp;",
+      processing: 'Mohon tunggu sedang meload data'},
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
   });
 </script>
 @endpush 

@@ -34,7 +34,7 @@
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            <form class="form-horizontal" action="{{ url('/superadmin/product/save') }}" method="post">
+            <form class="form-horizontal" action="{{ url('/superadmin/product/save') }}" method="post" enctype="multipart/form-data">
              {{ csrf_field() }}
              <div class="card-body">
                @if ($errors->any())
@@ -89,6 +89,12 @@
                 <label for="inputEmail3" class="col-sm-2 col-form-label">Keterangan</label>
                 <div class="col-sm-10">
                   <input type="text" class="form-control" name="keterangan" id="Keterangan" placeholder="Keterangan">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Image</label>
+                <div class="col-sm-10">
+                  <input type="file" name="image" id="image" class="form-control" placeholder="Image">
                 </div>
               </div>
             </div>

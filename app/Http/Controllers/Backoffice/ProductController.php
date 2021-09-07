@@ -65,20 +65,32 @@ class ProductController extends Controller
             'name_product' => 'required',
             'subharga' => 'required',
             'diskon' => 'required',
-            'harga'=> 'required'
+            'harga'=> 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 
         ]);
         $findProduct = Product::where('name_product', $request->name_product)->first();
         if ($findProduct != null) {
             return redirect('superadmin/product')->with('alert-failed', 'Gagal, Product sudah tersimpan !');
         }
-        Product::create([
-            'name_product' => $request->name_product,
-            'subharga' => $request->subharga,
-            'diskon' => $request->diskon,
-            'harga' => $request->harga,
-            'keterangan' => $request->keterangan
-        ]);
+        // Product::create([
+        //     'name_product' => $request->name_product,
+        //     'subharga' => $request->subharga,
+        //     'diskon' => $request->diskon,
+        //     'harga' => $request->harga,
+        //     'keterangan' => $request->keterangan
+        // ]);
+        $input = $request->all();
+
+        if ($image = $request->file('image')) {
+            $destinationPath = 'image/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['image'] = "$profileImage";
+        }
+    
+        Product::create($input);
+
         return redirect('superadmin/product')->with('alert-success', 'Data product berhasil ditambahkan !');
     }
 
@@ -94,15 +106,29 @@ class ProductController extends Controller
             'name_product' => 'required',
             'subharga' => 'required',
             'diskon' => 'required',
-            'harga'=> 'required'
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
-        Product::whereId($id)->update([
-           'name_product' => $request->name_product,
-            'subharga' => $request->subharga,
-            'diskon' => $request->diskon,
-            'harga' => $request->harga,
-            'keterangan' => $request->keterangan
-        ]);
+
+        $input = request()->except(['_token']);
+        //$input = $request->all();
+        // Product::whereId($id)->update([
+        //    'name_product' => $request->name_product,
+        //     'subharga' => $request->subharga,
+        //     'diskon' => $request->diskon,
+        //     'harga' => $request->harga,
+        //     'keterangan' => $request->keterangan
+        // ]);
+        if ($image = $request->file('image')) {
+            $destinationPath = 'image/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['image'] = "$profileImage";
+        }else{
+            unset($input['image']);
+        }
+
+        Product::whereId($id)->update($input);
+         //$product->update($input);
         return redirect('superadmin/product')->with('alert-success', 'Data product berhasil diupdate !');
     }
 

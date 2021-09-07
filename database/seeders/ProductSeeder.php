@@ -20,7 +20,8 @@ class ProductSeeder extends Seeder
             'subharga' => '100000',
             'diskon' =>'35',
             'harga' => '65000',
-            'keterangan' => 'Product Basic'
+            'keterangan' => 'Product Basic',
+            'image' => '20210907142932.jpg'
         ]);
     }
 }

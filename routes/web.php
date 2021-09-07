@@ -10,8 +10,9 @@ use App\Http\Controllers\Backoffice\ProductController;
 
 //accounting
 use App\Http\Controllers\Accounting\DashAccontingController;
-use App\Http\Controllers\Visitor\DashVisitorController;
 
+//visitor
+use App\Http\Controllers\Visitor\DashVisitorController;
 
 /*
 |--------------------------------------------------------------------------

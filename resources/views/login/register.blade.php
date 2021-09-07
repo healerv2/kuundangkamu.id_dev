@@ -118,7 +118,7 @@
       data:{otp:otp, _token:_token},
       success:function(result)
       {
-       //if(result == 'unique')
+       if(result == 'unique')
        {
         $('#error_otp').html('<label class="text-success">Otp Available</label>');
         $('#otp').removeClass('has-error');
