@@ -16,7 +16,8 @@
                         <li>{{ $produk->subharga}}</li>
                         <li>{{ $produk->diskon}}</li>
                         <li>{{ $produk->harga}}</li>
-                        <li>{{ $produk->keterangan}}</li>
+                        <li><b><h4>Fitur</h4></b></li>
+                        <li>{!!html_entity_decode($produk->fitur)!!}</li>
                     </ul>
                 </a>
             </li>

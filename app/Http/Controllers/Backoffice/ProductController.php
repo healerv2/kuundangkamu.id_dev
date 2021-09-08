@@ -66,7 +66,8 @@ class ProductController extends Controller
             'subharga' => 'required',
             'diskon' => 'required',
             'harga'=> 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'fitur'=> 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 
         ]);
         $findProduct = Product::where('name_product', $request->name_product)->first();
@@ -106,6 +107,7 @@ class ProductController extends Controller
             'name_product' => 'required',
             'subharga' => 'required',
             'diskon' => 'required',
+            'fitur'=> 'required',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 

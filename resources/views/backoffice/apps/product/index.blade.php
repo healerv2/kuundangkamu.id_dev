@@ -52,6 +52,7 @@
                     <th>Sub harga</th>
                     <th>Diskon (%)</th>
                     <th>Harga</th>
+                    <th>Fitur</th>
                     <th>Keterangan</th>
                     <th>Image</th>
                     <th>Action</th>
@@ -114,6 +115,7 @@
          { data: 'subharga', name: 'subharga', render: $.fn.dataTable.render.number( ',', '.', ) },
          { data: 'diskon', name: 'diskon' },
          { data: 'harga', name: 'harga',render: $.fn.dataTable.render.number( ',', '.', ) },
+         { data: 'fitur', name: 'fitur' },
          { data: 'keterangan', name: 'keterangan' },
          { data: 'image', mRender: function(data, type, full) {
            return '<img src="/image/'+data+'" style="height:100px;width:100px;"/>';

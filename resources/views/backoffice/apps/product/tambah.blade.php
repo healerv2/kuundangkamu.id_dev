@@ -86,6 +86,12 @@
                 </div>
               </div>
               <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Fitur</label>
+                <div class="col-sm-10">
+                  <textarea type="text" name="fitur" id="summernote"></textarea>
+                </div>
+              </div>
+              <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-2 col-form-label">Keterangan</label>
                 <div class="col-sm-10">
                   <input type="text" class="form-control" name="keterangan" id="Keterangan" placeholder="Keterangan">
@@ -133,5 +139,17 @@
     });
 
 });
+</script>
+<script>
+  $(function () {
+    // Summernote
+    $('#summernote').summernote()
+
+    // CodeMirror
+    // CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
+    //   mode: "htmlmixed",
+    //   theme: "monokai"
+    // });
+  });
 </script>
 @endpush
