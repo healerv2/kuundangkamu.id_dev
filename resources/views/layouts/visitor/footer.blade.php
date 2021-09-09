@@ -1,8 +1,8 @@
+</main>
 <footer class="main-footer">
     fofofofo
   </footer>
 
-</main>
 <!-- ./wrapper -->
 <ul class="gradient -unstyled">
   <li class="red"></li>
@@ -10,6 +10,7 @@
   <li class="blue"></li>
   <li class="yellow"></li>
 </ul>
+<!-- <span class="blob"></span> -->
 <!-- jQuery -->
 <script src="{{url('')}}/assets/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->

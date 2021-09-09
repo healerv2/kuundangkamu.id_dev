@@ -464,6 +464,7 @@ main.lazyloaded {
 
 .nav__left {
   display: none;
+  align-items: center;
 }
 
 .nav__left .logo img {
@@ -482,12 +483,13 @@ main.lazyloaded {
   background-image: linear-gradient(to left, #d97031, rgba(255, 255, 255, 0.8), skyblue);
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.5);
   border-radius: 30px;
+  height: 65px;
 }
 
 .nav__right li a {
   position: relative;
   display: inline-block;
-  font-size: 20px;
+  font-size: 16px;
   padding-top: 5px;
   padding-bottom: 5px;
   border-bottom: 3px solid transparent;
@@ -586,7 +588,7 @@ main.lazyloaded {
 
 main {
   padding-top: 60px;
-  padding-bottom: 180px;
+  padding-bottom: 100px;
 }
 
 .section {
@@ -622,10 +624,12 @@ main {
 
 .section h1 {
   font-size: clamp(1.5rem, 5vw, 3rem);
+  margin-bottom: 20px;
 }
 
 .section h2 {
-  font-size: clamp(1.3rem, 4vw, 2.5rem);
+  font-size: clamp(1.2rem, 4vw, 2.2rem);
+  margin-bottom: 10px;
 }
 
 .section li {
@@ -676,17 +680,23 @@ main {
 table {
   width: 100%;
   min-width: 600px;
-  border: 1px solid #ececec;
+  border: 1px solid #ddd;
   border-radius: 10px;
   border-collapse: separate;
   border-spacing: 0;
   overflow: hidden;
   margin-bottom: 0;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px) saturate(100%) contrast(45%) brightness(130%);
 }
 
 table thead {
-  background-color: #ececec;
+  background-color: rgba(236, 236, 236, 0.3);
+}
+
+table thead tr::after {
+  display: none;
 }
 
 table th, table td {
@@ -700,10 +710,12 @@ table tr {
 table tr::after {
   content: "";
   position: absolute;
+  height: 1px;
+  width: 100%;
+  bottom: 0;
   left: 0;
   right: 0;
-  bottom: -1px;
-  border-bottom: 1px solid #ececec;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .gradient {
@@ -785,8 +797,6 @@ table tr::after {
     bottom: auto;
     top: 0;
     margin: 0;
-    background-image: linear-gradient(to left, #d97031, rgba(255, 255, 255, 0.8), skyblue);
-    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.5);
   }
   .nav .container {
     display: flex;
@@ -795,7 +805,7 @@ table tr::after {
     padding-right: 20px;
   }
   .nav__left {
-    display: inline-block;
+    display: flex;
   }
   .nav__right {
     border-radius: 0;
@@ -803,9 +813,10 @@ table tr::after {
     box-shadow: none;
   }
   .nav__right li {
-    margin-left: 20px;
+    margin-left: 25px;
   }
   .nav__right li span {
     display: inline-block;
+    margin-left: 5px;
   }
 }

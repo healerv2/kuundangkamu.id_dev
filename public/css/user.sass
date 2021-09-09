@@ -376,9 +376,11 @@ $headerheight: 60px
         padding-right: 0
     &__left
         display: none
-        .logo img
-            object-fit: contain
-            object-position: left center
+        align-items: center
+        .logo 
+            img
+                object-fit: contain
+                object-position: left center
     &__right
         text-align: center
         z-index: 11
@@ -390,11 +392,12 @@ $headerheight: 60px
         background-image: linear-gradient(to left, #d97031, rgba(255, 255, 255, 0.8), skyblue)
         box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.5)
         border-radius: 30px
+        height: 65px
         li 
             a 
                 position: relative
                 display: inline-block
-                font-size: 20px
+                font-size: 16px
                 padding-top: 5px
                 padding-bottom: 5px
                 border-bottom: 3px solid transparent
@@ -446,7 +449,7 @@ $headerheight: 60px
 //section
 main 
     padding-top: $headerheight
-    padding-bottom: 180px
+    padding-bottom: 100px
 
 .section 
     position: relative
@@ -455,6 +458,7 @@ main
     background-position: center
     padding-top: 50px
     padding-bottom: 50px
+    text-align: center    
     // &:last-child
     //     padding-bottom: 90px
     &__box 
@@ -471,11 +475,12 @@ main
         .container
             padding-top: 2 * $headerheight + 50px
             height: 100%
-    text-align: center    
     h1
         font-size: clamp(1.5rem, 5vw, 3rem)
+        margin-bottom: 20px
     h2
-        font-size: clamp(1.3rem, 4vw, 2.5rem)
+        font-size: clamp(1.2rem, 4vw, 2.2rem)
+        margin-bottom: 10px
     li
         font-size: clamp(1rem, 2vw, 1.2rem)
     &-price
@@ -526,27 +531,45 @@ main
 table
     width: 100%
     min-width: 600px
-    border: 1px solid #ececec
+    border: 1px solid #ddd
     border-radius: 10px
     border-collapse: separate
     border-spacing: 0
     overflow: hidden
     margin-bottom: 0
-    background-color: white
+    background-color: rgba(255, 255, 255, 0.3)
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2)
+    backdrop-filter: blur(10px) saturate(100%) contrast(45%) brightness(130%)
     thead
-        background-color: #ececec
+        background-color: rgba(236, 236, 236, 0.3)
+        tr
+            &::after
+                display: none
     th,td
         padding: 10px
     tr
         position: relative
-        &::after 
+        &::after
             content: ""
             position: absolute
+            height: 1px
+            width: 100%
+            bottom: 0
             left: 0
             right: 0
-            bottom: -1px
-            border-bottom: 1px solid #ececec
-
+            background-color: rgba(255, 255, 255, 0.5)
+// .blob
+//     position: fixed
+//     width: 500px
+//     height: 500px
+//     border-radius: 50%
+//     background-color: #0D3B39
+//     left: 0
+//     right: 0
+//     bottom: 0
+//     top: 0
+//     margin: auto
+//     z-index: 1
 .gradient
     position: fixed
     left: 0
@@ -614,14 +637,17 @@ table
             .pricing
                 >li
                     flex: 0 0 33%
+    body
     //header
     $headerheight: 90px
     .nav
         bottom: auto
         top: 0
         margin: 0
-        background-image: linear-gradient(to left, #d97031, rgba(255, 255, 255, 0.8), skyblue)
-        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.5)
+        // background-image: linear-gradient(to left, #d97031, rgba(255, 255, 255, 0.8), skyblue)
+        // background: linear-gradient(90deg, #87ceeb, #8ac2f5, #a2b1f4, #c49ce5, #e286c6, #f27399, #f06b66, #d97031)
+        // background: linear-gradient(-45deg, #4a195b, #b52986, #fd648d, #faa776, #ead388)
+        // box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.5)
         .container
             display: flex
             justify-content: space-between
@@ -629,13 +655,14 @@ table
             padding-right: 20px
                 
         &__left
-            display: inline-block
+            display: flex
         &__right
             border-radius: 0
             background: transparent
             box-shadow: none
             li 
-                margin-left: 20px
+                margin-left: 25px
                 span
                     display: inline-block
+                    margin-left: 5px
   
