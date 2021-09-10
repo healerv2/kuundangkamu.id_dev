@@ -57,7 +57,7 @@ class HomeRegisterController extends Controller
         }
     }
 
-    public function RegisterUsers(Request $request, Zuwinda $zuwinda)
+    public function RegisterUsers(Request $request)
     {
         $request->validate([
             'name' => 'required',
@@ -67,9 +67,8 @@ class HomeRegisterController extends Controller
             'password'=> 'required'
         ]);
 
-        $otp = rand(1000, 9999);
 
-        $register = User::create([
+        User::create([
             'name' => $request->name,
             'username' => $request->username,
             'email' => $request->email,
@@ -77,8 +76,26 @@ class HomeRegisterController extends Controller
             'password' => bcrypt($request->password),
             'level' => 'visitor'
         ]);
-        $this->sendWhatsappOtp($otp, $register->phone);
-        return $register;
+        //$this->sendWhatsappOtp($otp, $register->phone);
+       return redirect('login')->with('alert-success', 'Register berhasil silahkan login !');
+    }
+
+    public function sendWhatsappOtp(Request $request, Zuwinda $zuwinda)
+    {
+        $users = User::where('phone',$request->phone)->first();
+        if ($users == null) {
+            return response()->json(['success' => false, 'message' => 'No Handphone tidak ditemukan']);
+        }
+        
+        $otp = rand(10000, 99999);
+
+        $register->create([
+        'otp' => $otp
+    ]);
+        $message_wa = "Your registration otp code is $otp";
+        $zuwinda->sendMessage($users->phone, $message_wa);
+    return response()->json(['success' => true, 'message' => 'Status berhasil dikirim!!!!']);
+
     }
 
     public function CheckOtp(Request $request)

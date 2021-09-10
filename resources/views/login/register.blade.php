@@ -24,7 +24,7 @@
         <p class="login-box-msg">Register a new membership</p>
 
         <form action="../../index.html" method="post">
-                {{ csrf_field() }}
+          {{ csrf_field() }}
           <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Full name">
             <div class="input-group-append">
@@ -53,7 +53,8 @@
             <input type="text" class="form-control" name="otp" id="otp" placeholder="Otp">
             <div class="input-group-append">
               <div class="input-group-text">
-                <a href="{{ url('home/send/otp') }}"class="btn-primary btn-sm">Send Otp</a>
+                <a href="javascript:void(0);"class="btn btn-primary btn-sm">Send Otp</a>
+
                 {{-- <span class="fas fa-lock"></span> --}}
               </div>
               <span id="error_otp"></span>
@@ -89,7 +90,7 @@
   </div><!-- /.card -->
 </div>
 <!-- /.register-box -->
-
+@push('scripts')
 <!-- jQuery -->
 <script src="{{url('')}}/assets/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
@@ -113,29 +114,55 @@
    else
    {
      $.ajax({
-     url: '{{ url('/')}}/otp/check',
-      method:"POST",
-      data:{otp:otp, _token:_token},
-      success:function(result)
-      {
-       if(result == 'unique')
+       url: '{{ url('/')}}/otp/check',
+       method:"POST",
+       data:{otp:otp, _token:_token},
+       success:function(result)
        {
-        $('#error_otp').html('<label class="text-success">Otp Available</label>');
-        $('#otp').removeClass('has-error');
-        $('#register').attr('disabled', false);
+         if(result == 'unique')
+         {
+          $('#error_otp').html('<label class="text-success">Otp Available</label>');
+          $('#otp').removeClass('has-error');
+          $('#register').attr('disabled', false);
+        }
+        else
+        {
+          $('#error_otp').html('<label class="text-danger">Otp not Available</label>');
+          $('#otp').addClass('has-error');
+          $('#register').attr('disabled', 'disabled');
+        }
       }
-      else
-      {
-        $('#error_otp').html('<label class="text-danger">Otp not Available</label>');
-        $('#otp').addClass('has-error');
-        $('#register').attr('disabled', 'disabled');
-      }
-    }
-  })
+    })
    }
  });
 
  });
 </script>
+<script>
+ $(document).ready(function () {
+  var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+  $('#sendOtp').on('change', function(e){
+   ///var status = $(this).find(":selected").attr("value");
+
+   $.ajax({
+    url: '{{url('/penyelia/report/update')}}',
+    data: { _token: CSRF_TOKEN, id: {{ Request::segment(4) }}, status: status},
+    dataType: "json",
+    type: "POST",
+    success: function (response) {
+      if(response.success){
+        return toastr.success(response.message, 'Sukses !')
+      }
+      return toastr.error(response.message, 'Gagal !')
+    },
+    error: function (response) {
+      console.log(response)
+      toastr.error("Gagal, terjadi kesalahan server")
+    }
+  });
+ });
+});
+</script>
+@endpush
 </body>
 </html>

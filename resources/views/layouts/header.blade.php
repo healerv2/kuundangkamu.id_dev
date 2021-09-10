@@ -16,7 +16,7 @@
   <!-- iCheck -->
   <link rel="stylesheet" href="{{url('')}}/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- JQVMap -->
-  <link rel="stylesheet" href="{{url('')}}/assets/plugins/jqvmap/jqvmap.min.css">
+  {{-- <link rel="stylesheet" href="{{url('')}}/assets/plugins/jqvmap/jqvmap.min.css"> --}}
   <!-- Theme style -->
   <link rel="stylesheet" href="{{url('')}}/assets/dist/css/adminlte.min.css">
   <!-- overlayScrollbars -->

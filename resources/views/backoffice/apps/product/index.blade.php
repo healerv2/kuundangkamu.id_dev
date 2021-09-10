@@ -79,7 +79,7 @@
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": true, "autoWidth": true,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+      // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
       "paging": true,
       "searching": true,
       "ordering": true,

@@ -29,8 +29,8 @@
 <!-- Sparkline -->
 <script src="{{url('')}}/assets/plugins/sparklines/sparkline.js"></script>
 <!-- JQVMap -->
-<script src="{{url('')}}/assets/plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="{{url('')}}/assets/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+{{-- <script src="{{url('')}}/assets/plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="{{url('')}}/assets/plugins/jqvmap/maps/jquery.vmap.usa.js"></script> --}}
 <!-- jQuery Knob Chart -->
 <script src="{{url('')}}/assets/plugins/jquery-knob/jquery.knob.min.js"></script>
 <!-- daterangepicker -->
