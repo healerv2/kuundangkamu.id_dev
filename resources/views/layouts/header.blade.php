@@ -34,6 +34,7 @@
   <link rel="stylesheet" href="{{url('')}}/assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
   <!-- summernote -->
   <link rel="stylesheet" href="{{url('')}}/assets/plugins/summernote/summernote-bs4.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
