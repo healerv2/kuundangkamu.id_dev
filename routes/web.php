@@ -80,6 +80,7 @@ Route::group(['middleware' => ['auth']], function () {
         
             Route::prefix('/visitor')->group(function() {
                 Route::get('/public',[DashVisitorController::class,'index']);
+                Route::get('/template',[DashVisitorController::class,'template']);
             });
 
         });

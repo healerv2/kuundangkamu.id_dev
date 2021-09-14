@@ -32,7 +32,7 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="{{url('template')}}">
             <i class="fas fa-list"></i>
             <span>List Template</span>
           </a>

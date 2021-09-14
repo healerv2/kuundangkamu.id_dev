@@ -934,6 +934,7 @@ table tr::after {
   border-radius: 40px;
   transition: all .3s ease;
   font-weight: bold;
+  padding: 7px 10px;
 }
 
 .form__item a:hover {
