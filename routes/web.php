@@ -13,6 +13,7 @@ use App\Http\Controllers\Accounting\DashAccontingController;
 
 //visitor
 use App\Http\Controllers\Visitor\DashVisitorController;
+use App\Http\Controllers\Visitor\ListTemplateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,7 +81,7 @@ Route::group(['middleware' => ['auth']], function () {
         
             Route::prefix('/visitor')->group(function() {
                 Route::get('/public',[DashVisitorController::class,'index']);
-                Route::get('/template',[DashVisitorController::class,'template']);
+                Route::get('/template',[ListTemplateController::class,'index']);
             });
 
         });

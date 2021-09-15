@@ -26,13 +26,13 @@
       </div>
       <ul class="nav__right -unstyled -flex ">
         <li class="active">
-          <a href="#">
+          <a href="{{url('')}}/visitor/public">
             <i class="fas fa-home"></i>
             <span>Dashboard</span>
           </a>
         </li>
         <li>
-          <a href="{{url('template')}}">
+          <a href="{{url('')}}/visitor/template">
             <i class="fas fa-list"></i>
             <span>List Template</span>
           </a>
