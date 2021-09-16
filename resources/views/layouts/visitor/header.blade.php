@@ -43,7 +43,7 @@
             <span>Undanganku</span>
           </a>
         </li>
-        <li class="@if(\Request::is('visitor/send') ) active  @endif">
+        <!-- <li class="@if(\Request::is('visitor/send') ) active  @endif">
           <a href="#">
             <i class="fas fa-paper-plane"></i>
             <span>Kirim Undangan</span>
@@ -68,14 +68,14 @@
               </a>
             </li>
           </ul>
-        </li>
-        <li class="visible-lg @if(\Request::is('visitor/profil') ) active  @endif">
+        </li> -->
+        <li class="@if(\Request::is('visitor/profil') ) active  @endif">
           <a href="{{url('')}}/visitor/profil">
             <i class="fas fa-user-cog"></i>
             <span>Profil</span>
           </a>
         </li>
-        <li class="visible-lg @if(\Request::is('visitor/') ) active  @endif">
+        <li class="@if(\Request::is('visitor/') ) active  @endif">
           <a href="{{url('logout')}}">
             <i class="nav-icon fas fa-sign-out-alt"></i>
             <span>log out</span>

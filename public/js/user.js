@@ -66,23 +66,23 @@ $(function () {
     //     console.log("kasdjhasd");
     // });
 
-    var profil = $('.nav__right_sub')
+    // var profil = $('.nav__right_sub')
 
-    $('.nav__right_profil').on('click', function () {
+    // $('.nav__right_profil').on('click', function () {
 
-        if (profil.hasClass('show')) {
-            $(profil).removeClass('show')
-            setTimeout(function () {
-                $(profil).removeClass('animatable')
-            }, 1000);
-        } else{
-            $(profil).addClass('show')
-        }
+    //     if (profil.hasClass('show')) {
+    //         $(profil).removeClass('show')
+    //         setTimeout(function () {
+    //             $(profil).removeClass('animatable')
+    //         }, 1000);
+    //     } else{
+    //         $(profil).addClass('show')
+    //     }
 
-        setTimeout(function () { 
-            $(profil).addClass('animatable')
-        }, 500);
-    })
+    //     setTimeout(function () { 
+    //         $(profil).addClass('animatable')
+    //     }, 500);
+    // })
 
     
     //wow

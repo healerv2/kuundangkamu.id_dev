@@ -723,6 +723,7 @@ main {
 .section-template ul li figure img {
   transition: all .3s ease;
   transform: scale(1);
+  width: 100%;
 }
 
 .section-template ul li p {
