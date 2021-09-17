@@ -610,7 +610,7 @@ main.lazyloaded {
   display: none;
 }
 
-.section-price .pricing > li::after, .section-profil .profil__right, table {
+.section-price .pricing > li::after, .section-profil .profil__right, table, footer {
   background-color: rgba(255, 255, 255, 0.3);
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
   border-radius: 20px;
@@ -702,15 +702,16 @@ main {
 }
 
 .section-template ul li {
-  padding: 10px 0 30px;
+  padding: 10px 10px 30px;
+  width: 33.33%;
 }
 
 .section-template ul li:hover figure {
-  transform: scale(1.02);
+  transform: scale(1.01);
 }
 
 .section-template ul li:hover figure img {
-  transform: scale(1.1);
+  transform: scale(1);
 }
 
 .section-template ul li figure {
@@ -718,12 +719,20 @@ main {
   transition: all .3s ease;
   border-radius: 30px;
   overflow: hidden;
+  padding-bottom: 150%;
+  position: relative;
+  width: 100%;
 }
 
 .section-template ul li figure img {
+  position: absolute;
+  left: 0;
+  top: 0;
   transition: all .3s ease;
-  transform: scale(1);
+  transform: scale(1.1);
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .section-template ul li p {
@@ -758,9 +767,12 @@ dd {
 
 .table-responsive {
   overflow-x: auto;
+  padding: 20px;
+  margin: -20px;
 }
 
 table {
+  margin-right: 20px;
   width: 100%;
   min-width: 600px;
   border: 1px solid #ddd;
@@ -1007,7 +1019,8 @@ table tr::after {
 footer {
   position: relative;
   z-index: 1;
-  padding: 5px 0;
+  padding: 10px 0;
+  border-radius: 0;
 }
 
 footer p {
