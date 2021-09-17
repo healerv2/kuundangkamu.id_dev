@@ -3,18 +3,18 @@
 <div class="section section-template">
     <div class="container">
         <h1>List Template</h1>
-         @foreach ($template->chunk(3) as $chunk)
+        {{--  @foreach ($template->chunk(3) as $chunk) --}}
         <ul class="-unstyled -flex -justify-between">
-            @foreach ($chunk as $template)
+            @foreach ($template as $template)
             <li>
                 <figure><img src="/image/{{ $template->image }}" alt=""></figure>
                 <p>{{ $template->name_template}}</p>
                 <a href="{{ $template->url}}" target="_blank" class="btn btn--white">Demo</a>
                 <a href="" class="btn btn">Pilih</a>
             </li>
-             @endforeach
+            @endforeach
         </ul>
-         @endforeach
+        {{--  @endforeach --}}
     </div>
 </div>
 @stop
