@@ -25,25 +25,25 @@
         </a>
       </div>
       <ul class="nav__right -unstyled -flex ">
-        <li class="active">
+        <li class="@if(\Request::is('visitor/public') ) active  @endif">
           <a href="{{url('')}}/visitor/public">
             <i class="fas fa-home"></i>
             <span>Dashboard</span>
           </a>
         </li>
-        <li>
+        <li class="@if(\Request::is('visitor/template') ) active  @endif">
           <a href="{{url('')}}/visitor/template">
             <i class="fas fa-list"></i>
             <span>List Template</span>
           </a>
         </li>
-        <li>
-          <a href="#">
+        <li class="@if(\Request::is('visitor/undangan') ) active  @endif">
+          <a href="{{url('')}}/visitor/undangan">
             <i class="fas fa-envelope"></i>
             <span>Undanganku</span>
           </a>
         </li>
-        <li>
+        <!-- <li class="@if(\Request::is('visitor/send') ) active  @endif">
           <a href="#">
             <i class="fas fa-paper-plane"></i>
             <span>Kirim Undangan</span>
@@ -68,14 +68,14 @@
               </a>
             </li>
           </ul>
-        </li>
-        <li class="visible-lg ">
-          <a href="#">
+        </li> -->
+        <li class="@if(\Request::is('visitor/profil') ) active  @endif">
+          <a href="{{url('')}}/visitor/profil">
             <i class="fas fa-user-cog"></i>
             <span>Profil</span>
           </a>
         </li>
-        <li class="visible-lg ">
+        <li class="@if(\Request::is('visitor/') ) active  @endif">
           <a href="{{url('logout')}}">
             <i class="nav-icon fas fa-sign-out-alt"></i>
             <span>log out</span>

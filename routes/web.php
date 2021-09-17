@@ -15,6 +15,8 @@ use App\Http\Controllers\Accounting\DashAccontingController;
 //visitor
 use App\Http\Controllers\Visitor\DashVisitorController;
 use App\Http\Controllers\Visitor\ListTemplateController;
+use App\Http\Controllers\Visitor\ListUndanganController;
+use App\Http\Controllers\Visitor\ListProfilController;
 
 /*
 |--------------------------------------------------------------------------
@@ -92,6 +94,8 @@ Route::group(['middleware' => ['auth']], function () {
             Route::prefix('/visitor')->group(function() {
                 Route::get('/public',[DashVisitorController::class,'index']);
                 Route::get('/template',[ListTemplateController::class,'index']);
+                Route::get('/undangan',[ListUndanganController::class,'index']);
+                Route::get('/profil',[ListProfilController::class,'index']);
             });
 
         });

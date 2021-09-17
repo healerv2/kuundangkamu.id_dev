@@ -1,7 +1,7 @@
 </main>
-<footer class="main-footer">
-    fofofofo
-  </footer>
+<footer>
+  <p>Copyright | <b>Undang</b>an.com</p>
+</footer>
 
 <!-- ./wrapper -->
 <ul class="gradient -unstyled">
