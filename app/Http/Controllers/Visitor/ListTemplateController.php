@@ -4,17 +4,16 @@ namespace App\Http\Controllers\Visitor;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Product;
+use App\Models\Template;
 
 class ListTemplateController extends Controller
 {
     //
+   public function index()
+   {
+      
+        $template = Template::all();
 
-    public function index()
-     {
-
-        $product = Product::all();
-
-        return view('visitor/apps/template',['product' => $product]);
-     }
+        return view('visitor/apps/template',['template' => $template]);
+   }
 }
