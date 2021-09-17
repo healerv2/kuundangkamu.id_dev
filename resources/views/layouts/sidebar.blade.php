@@ -40,7 +40,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{url('')}}/superadmin/user" class="nav-link">
+            <a href="{{url('')}}/superadmin/template" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Data Template

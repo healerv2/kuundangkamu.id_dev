@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeRegisterController;
 use App\Http\Controllers\Backoffice\DashboardController;
 use App\Http\Controllers\Backoffice\DataUserController;
 use App\Http\Controllers\Backoffice\ProductController;
+use App\Http\Controllers\Backoffice\TemplateController;
 
 //accounting
 use App\Http\Controllers\Accounting\DashAccontingController;
@@ -50,6 +51,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['ceks_login:superadmin']], function () {
 
             Route::prefix('/superadmin')->group(function() {
+                //dashboard
                 Route::get('/dashboard',[DashboardController::class,'index']);
                 //user
                 Route::get('/user',[DataUserController::class,'index']);
@@ -67,6 +69,14 @@ Route::group(['middleware' => ['auth']], function () {
                 Route::get('/product/edit/{id}',[ProductController::class,'EditProduct']);
                 Route::post('/product/update/{id}',[ProductController::class,'UpdateProduct']);
                 Route::get('/product/delete/{id}',[ProductController::class,'DeleteProduct']);
+                //template
+                 Route::get('/template',[TemplateController::class,'index']);
+                 Route::get('/template/ajax',[TemplateController::class,'GetTemplate']);
+                 Route::get('/template/add',[TemplateController::class,'ShowAddTemplate']);
+                 Route::post('/template/save',[TemplateController::class,'AddTemplate']);
+                 Route::get('/template/edit/{id}',[TemplateController::class,'EditTemplate']);
+                 Route::post('/template/update/{id}',[TemplateController::class,'UpdateTemplate']);
+                 Route::get('/template/delete/{id}',[TemplateController::class,'DeleteTemplate']);
             });
 
         });

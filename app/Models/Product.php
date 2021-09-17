@@ -17,4 +17,9 @@ class Product extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime'
     ];
+
+    public function Template()
+    {
+        return $this->hasMany(Template::class);
+    }
 }
