@@ -3,8 +3,8 @@
 <div class="section section-template">
     <div class="container">
         <h1>List Template</h1>
-         @foreach ($template->chunk(3) as $chunk)
-        <ul class="-unstyled -flex -justify-between">
+         @foreach ($template->chunk(9) as $chunk)
+        <ul class="-unstyled -flex -justify-center">
             @foreach ($chunk as $template)
             <li>
                 <figure><img src="/image/{{ $template->image }}" alt=""></figure>
