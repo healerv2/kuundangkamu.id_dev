@@ -19,12 +19,11 @@ class CreateOrdersTable extends Migration
             /** foreignkey */
             $table->foreign('user_id')->references('id')->on('users');
             /** end foreignkey */
-            $table->unsignedBigInteger('product_id')->nullable();
-            /** foreignkey */
-            $table->foreign('product_id')->references('id')->on('product');
-            /** end foreignkey */
             $table->string('no_orders');
             $table->string('ref_number');
+            $table->string('subharga')->default(0);
+            $table->string('diskon')->default(0);
+            $table->string('harga')->default(0);
             $table->integer('status');
             $table->string('notes')->nullable();
             $table->timestamps();

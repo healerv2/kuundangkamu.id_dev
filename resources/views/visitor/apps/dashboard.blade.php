@@ -2,13 +2,13 @@
 @section('content')
 <div class="section section-price">
     <div class="container">
-        
+
         <h1>Pricing</h1>
         @foreach ($product->chunk(3) as $chunk)
         <ul class="pricing -unstyled -flex -justify-center">
             @foreach ($chunk as $produk)
             <li>
-                <a href="#">
+                <a href="{{url('')}}/visitor/checkout">
                     <h2>{{ $produk->name_product}}</h2>
                     <ul class="-unstyled">
                         <li>{{ $produk->subharga}}</li>
