@@ -4,10 +4,10 @@
     <div class="container">
         <h1>List Template</h1>
         {{--  @foreach ($template->chunk(3) as $chunk) --}}
-        <ul class="-unstyled -flex -justify-between">
+        <ul class="-unstyled -flex -justify-center">
             @foreach ($template as $template)
             <li>
-                <figure><img src="/image/{{ $template->image }}" alt=""></figure>
+                <figure style="background-image: url(/image/{{ $template->image }})"></figure>
                 <p>{{ $template->name_template}}</p>
                 <a href="{{ $template->url}}" target="_blank" class="btn btn--white">Demo</a>
                 <a href="" class="btn btn">Pilih</a>
