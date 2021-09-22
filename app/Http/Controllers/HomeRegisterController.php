@@ -8,7 +8,10 @@ use Exception;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Services\Zuwinda;
+use App\Services\ZuwindaRequestBuilder;
+use Carbon\Carbon;
 use DB;
+use Illuminate\Support\Facades\Redis;
 
 class HomeRegisterController extends Controller
 {
@@ -26,17 +29,17 @@ class HomeRegisterController extends Controller
     public function handleGoogleCallback()
     {
         try {
-      
+
             $user = Socialite::driver('google')->user();
-       
+
             $finduser = User::where('google_id', $user->id)->first();
-       
+
             if($finduser){
-       
+
                 Auth::login($finduser);
-      
+
                 return redirect()->intended('visitor/public');
-       
+
             }else{
                 $newUser = User::create([
                     'name' => $user->name,
@@ -46,12 +49,12 @@ class HomeRegisterController extends Controller
                     'level' => 'visitor',
                     'password' => encrypt('123456')
                 ]);
-      
+
                 Auth::login($newUser);
-      
+
                 return redirect()->intended('visitor/public');
             }
-      
+
         } catch (Exception $e) {
             dd($e->getMessage());
         }
@@ -82,20 +85,39 @@ class HomeRegisterController extends Controller
 
     public function sendWhatsappOtp(Request $request, Zuwinda $zuwinda)
     {
-        $users = User::where('phone',$request->phone)->first();
-        if ($users == null) {
-            return response()->json(['success' => false, 'message' => 'No Handphone tidak ditemukan']);
+        try {
+            if (!$request->phone) {
+                return json_encode([
+                    'success' => false,
+                    'message' => 'Nomor ponsel wajib dimasukkan'
+                ]);
+            }
+            $phone = $request->phone;
+            $otp = rand(1000, 9999);
+
+            $redis = Redis::get($phone);
+            $redis_expire = Redis::get($phone . '_expire');
+            if ($redis == null && $redis_expire == null) {
+
+                $zuwinda = new ZuwindaRequestBuilder();
+                $zuwinda->buildSendWhatsapp($phone, 'Kode otp untuk pendaftaran kuundangkamu.id adalah ' . $otp)->send();
+
+                return json_encode([
+                    'success' => true,
+                    'message' => 'Kode OTP Berhasil dikirim'
+                ]);
+            }
+            return json_encode([
+                'success' => false,
+                'message' => 'Kode OTP sudah dikirim, silakan dicoba kembali dalam ' . Carbon::createFromFormat('Y-m-d H:i:s', $redis_expire)->diffForHumans(),
+            ]);
+        } catch (\Throwable $th) {
+            error_log($th);
+            return json_encode([
+                'success' => false,
+                'message' => 'Permintaan gagal, silakan coba beberapa saat lagi.'
+            ]);
         }
-        
-        $otp = rand(10000, 99999);
-
-        $register->create([
-        'otp' => $otp
-    ]);
-        $message_wa = "Your registration otp code is $otp";
-        $zuwinda->sendMessage($users->phone, $message_wa);
-    return response()->json(['success' => true, 'message' => 'Status berhasil dikirim!!!!']);
-
     }
 
     public function CheckOtp(Request $request)

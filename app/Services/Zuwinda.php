@@ -1,43 +1,48 @@
 <?php
 
+
 namespace App\Services;
 
-use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Redis;
+use function GuzzleHttp\Psr7\str;
 
 class Zuwinda
 {
 
-    protected $http;
+    protected $baseUrl;
 
-    public function __construct(Client $client)
+    public function __construct()
     {
-        $this->http = $client;
+        $this->baseUrl = env('ZUWINDA_URL');
     }
 
-    public function sendMessage($to, $content)
-    {
-        try {
-            $promise = $this->http->requestAsync('POST', 'https://api.zuwinda.com/v1.2/message/whatsapp/send-text', [
-                'headers' => [
-                    'Content-Type' => 'application/json',
-                    'x-access-key' => env('ZUWINDA_API_KEY', 'Your access token zuwinda'),
-                ],
-                'json' => [
-                    'instances_id' => env('ZUWINDA_INSTANCES_ID'),
-                    'to' => $to,
-                    'content' => $content
-                ]
-            ]);
-            $response = $promise->wait();
-            return (object) [
-                'success' => true,
-                'message' => 'Message sent successfully'
-            ];
-        } catch (\Throwable $th) {
-            return (object) [
-                'success' => false,
-                'message' => 'Failed to send message'
-            ];
+    public function apiCall($request){
+
+        if ($request['method'] == 'post'){
+            $response = Http::withHeaders($request['headers'])->post($this->baseUrl . $request['url'], $request['data']);
+        }else{
+            $response = Http::withHeaders($request['headers'])->get($this->baseUrl . $request['url'] . '?' . $request['query']);
+        }
+
+        if ($request['url'] == 'instances'){
+            if ((boolean)$response['success'] && count($response['data']) > 0){
+                $instanceIds = '';
+                foreach ($response['data'] as $data){
+                    if ((string)$data['status'] == '1' && (string)$data['whatsapp_status'] == '1'){
+                        $instanceIds .= $data['instances_id'] . ';';
+                    }
+                }
+                if ($instanceIds == ''){
+                    Log::error("Instances not available");
+                }else{
+                    Redis::set('zuwinda_instance', $instanceIds);
+                }
+            }else{
+                Log::error("Failed get instances");
+            }
         }
     }
 }

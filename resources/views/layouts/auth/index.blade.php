@@ -14,7 +14,7 @@
 </head>
 <body class="auth">
 @yield('content')
-{{-- @include('layouts/auth.footer') --}}
+@include('layouts/auth.footer')
 
   <div class="blob">
     <span class="blob__first"></span>

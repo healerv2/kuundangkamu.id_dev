@@ -5,9 +5,14 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Services\ZuwindaRequestBuilder;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Validator;
+use Whoops\Run;
 
 class RegisterController extends Controller
 {

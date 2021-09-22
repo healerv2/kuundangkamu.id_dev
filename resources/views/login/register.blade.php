@@ -32,7 +32,7 @@
         <div class="form__item otp">
           <input type="text" class="" name="otp" id="otp" placeholder="Otp">
           <a href="javascript:void(0);" onclick="SendOtp()" class="">Send Otp</a>
-          {{-- <span class="fas fa-lock"></span> --}} 
+          {{-- <span class="fas fa-lock"></span> --}}
           <span id="error_otp"></span>
         </div>
         <div class="-flex -justify-between -align-center">
@@ -52,7 +52,7 @@
     </div>
     <a href="{{url('login')}}" class="link">I already have a membership</a>
   </div>
-  
+
 
   @push('scripts')
   <!-- jQuery -->
@@ -66,7 +66,7 @@
       var _token = $('input[name="_token"]').val();
       var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
       if(!filter.test(otp))
-      {    
+      {
        $('#error_otp').html('<label class="text-danger">Otp tidak sesuai, mohon dicek!</label>');
        $('#otp').addClass('has-error');
        $('#register').attr('disabled', 'disabled');
@@ -103,15 +103,18 @@
     $.ajax({
       url: '{{url('/send/otp')}}',
       type: 'post',
+      dataType: 'json',
       data: {
         _token: "{{ csrf_token() }}",
+        phone: $('#Phone').val()
       // value: c
     },
     success: function (response) {
       if(response.success){
-        return toastr.success(response.message, 'Sukses !')
+        // return toastr.success(response.message, 'Sukses !')
       }
-      return toastr.error(response.message, 'Gagal !')
+      alert(response.message);
+    //   return toastr.error(response.message, 'Gagal !')
     },
     error: function (response) {
       console.log(response)
