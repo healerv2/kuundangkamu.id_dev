@@ -11,6 +11,9 @@ $pink: #FFADD6
 $red: #f00
 $green: #69cc69
 $yellow: #FCE1D0
+$basic: #BA51CF
+$premium: #F12E11
+$eksklusif: #E1A571
 
 
 \:root
@@ -27,6 +30,9 @@ $yellow: #FCE1D0
     --color-red: #{$red}
     --color-green: #{$green}
     --color-yellow: #{$yellow}
+    --color-basic: #{$basic}
+    --color-premium: #{$premium}
+    --color-eksklusif: #{$eksklusif}
     --breakpoint-xs: 0
     --breakpoint-sm: 576px
     --breakpoint-md: 768px
@@ -193,6 +199,7 @@ body
     background-color: var(--color-white)
     font-family: var(--font-family-primary)
     overflow-x: hidden
+    min-height: 100vh
 
 .container 
     position: relative
@@ -259,7 +266,7 @@ input[type]
     color: var(--color-white)
     font-size: 16px
     // font-weight: 600
-    border-radius: 5px
+    border-radius: 20px
     transition: .5s ease
     min-width: 100px
     padding: 8px 20px
@@ -463,10 +470,11 @@ $headerheight: 65px
 
 .m-hide
     display: none
-%glass
-    background-color: rgba(255,255,255,0.3)
+@mixin glass
+    background-color: rgba(255,255,255,0.1)
     box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2)
     border-radius: 20px
+    backdrop-filter: blur(10px) saturate(100%) contrast(45%) brightness(130%)
 //section
 main 
     padding-bottom: 50px
@@ -512,25 +520,14 @@ main
                 padding: 10px 0
                 flex: 0 1 100%
                 position: relative
-                &::after
-                    @extend %glass
-                    left: 10px
-                    top: 10px
-                    right: 10px
-                    bottom: 10px
-                    backdrop-filter: blur(10px) saturate(100%) contrast(45%) brightness(130%)
-                    content: ''
-                    position: absolute
-                    z-index: 0
-                    border-radius: 40px
-                    border-top-left-radius: 0
                 a
+                    @include glass
                     text-align: center
                     height: 100%
                     border: 1px solid #ececec
                     display: block
                     padding: 20px
-                    border-radius: 40px
+                    border-radius: 30px
                     border-top-left-radius: 0
                     z-index: 1
                     position: relative
@@ -550,13 +547,23 @@ main
                     padding-bottom: 150%
                     position: relative
                     width: 100%
-                    transition: background 5s, transform .3s ease
+                    transition: background 5s ease-in-out, transform .3s ease
                     background-size: 100%
                     background-position: top
+                    span
+                        position: absolute
+                        bottom: 0
+                        right: 0
+                        padding: 10px 30px
+                        background-color: var(--color-basic)
+                        border-radius: 30px 0
+                        font-size: clamp(1rem, 2vw, 1.2rem)
+                        font-weight: 600
+                        letter-spacing: 1px
+                        color: var(--color-white)
                 p
-                    margin-top: 15px
+                    margin: 15px 0
                     font-weight: 600
-                    margin-bottom: 10px
                 .btn
                     box-shadow: 0px 5px 0px 0 rgba(0,0,0,0.4)
                     margin: 0 5px
@@ -564,15 +571,29 @@ main
                     &:hover
                         box-shadow: 0px 0px 0px 0 rgba(0,0,0,0.4)
                         transform: translateY(0)
+                &.basic
+                    figure
+                        span
+                            background-color: var(--color-basic)
+                &.premium
+                    figure
+                        span
+                            background-color: var(--color-premium)
+                &.eksklusif
+                    figure
+                        span
+                            background-color: var(--color-eksklusif)
     &-profil
-        export
         .profil
             &__left
                 flex: 0 0 300px
             &__right
                 flex: 0 0 calc(100% - 350px)
                 text-align: left
-                @extend %glass
+                @include glass
+    &-checkout
+        .checkout
+            
 dd
     margin-left: 0
 %bgabsolute
@@ -596,6 +617,22 @@ dd
         &::after
             content: ""
             clear: both
+        &.unglass
+            table
+                text-align: left
+                background-color: transparent
+                box-shadow: none
+                backdrop-filter: none
+                border: none
+                min-width: 300px
+                max-width: 600px
+                width: 100%
+                thead
+                    background-color: transparent
+                tr
+                    &:after
+                        display: none
+
 table
     width: 100%
     min-width: 600px
@@ -604,10 +641,10 @@ table
     border-spacing: 0
     overflow: hidden
     margin-bottom: 0
-    @extend %glass
+    @include glass
     backdrop-filter: blur(10px) saturate(100%) contrast(45%) brightness(130%)
     thead
-        background-color: rgba(236, 236, 236, 0.3)
+        background-color: rgba(236, 236, 236, 0.2)
         tr
             &::after
                 display: none
@@ -620,7 +657,7 @@ table
             position: absolute
             height: 1px
             width: 100%
-            bottom: 0
+            top: 0
             left: 0
             right: 0
             background-color: rgba(255, 255, 255, 0.5)
@@ -649,22 +686,22 @@ table
         width: 75vw
         height: 75vh
         position: absolute
-        &.red
-            left: 0
-            top: 0
-            background: radial-gradient(ellipse at top left , #e66465, transparent)
         &.green
-            right: 0
             top: 0
-            background: radial-gradient(ellipse at top right , #64e67e, transparent)
+            left: 0
+            background: radial-gradient(ellipse at top left , #64e67e, transparent)
+        &.yellow
+            top: 0
+            right: 0
+            background: radial-gradient(ellipse at top right, #d9e664, transparent)
         &.blue
             bottom: 0
             left: 0
             background: radial-gradient(ellipse at bottom left , #64a7e6, transparent)
-        &.yellow
-            bottom: 0
+        &.red
             right: 0
-            background: radial-gradient(ellipse at bottom right, #d9e664, transparent)
+            bottom: 0
+            background: radial-gradient(ellipse at bottom right , #e66465, transparent)
 .blob
     position: absolute
     z-index: 0
@@ -794,7 +831,7 @@ footer
     position: relative
     z-index: 1
     padding: 10px 0
-    @extend %glass
+    @include glass
     border-radius: 0
     margin-bottom: $headerheight
     p
@@ -832,7 +869,7 @@ footer
         padding-top: $headerheight
 
 @media(min-width:1200px)
-      
+    
     .section
         &-price 
             .pricing
@@ -845,12 +882,11 @@ footer
         bottom: auto
         top: 0
         margin: 0
+        @include glass
         // background-image: linear-gradient(to left, #d97031, rgba(255, 255, 255, 0.8), skyblue)
         // background: linear-gradient(90deg, #87ceeb, #8ac2f5, #a2b1f4, #c49ce5, #e286c6, #f27399, #f06b66, #d97031)
         // background: linear-gradient(-45deg, #4a195b, #b52986, #fd648d, #faa776, #ead388)
-        background: rgba(255,255,255,0.5)
-        box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.25)
-        backdrop-filter: blur(10px)
+        border-radius: 0
         .container
             display: flex
             justify-content: space-between

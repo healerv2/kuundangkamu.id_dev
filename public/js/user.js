@@ -84,6 +84,24 @@ $(function () {
     //     }, 500);
     // })
 
+    // template
+
+    // init Isotope
+    var $grid = $('.grid').isotope({
+        // options
+        // itemSelector: '.grid-item',
+        // layoutMode: 'fitRows'
+        // layoutMode: 'fitRows',
+        // fitRows: {
+        //     gutter: 10
+        // }
+
+    });
+    // filter items on button click
+    $('.filter-button-group').on('click', 'button', function () {
+        var filterValue = $(this).attr('data-filter');
+        $grid.isotope({ filter: filterValue });
+    });
     
     //wow
     // new WOW().init();

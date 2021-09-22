@@ -12,6 +12,9 @@
   --color-red: #f00;
   --color-green: #69cc69;
   --color-yellow: #FCE1D0;
+  --color-basic: #BA51CF;
+  --color-premium: #F12E11;
+  --color-eksklusif: #E1A571;
   --breakpoint-xs: 0;
   --breakpoint-sm: 576px;
   --breakpoint-md: 768px;
@@ -232,6 +235,7 @@ body {
   background-color: var(--color-white);
   font-family: var(--font-family-primary);
   overflow-x: hidden;
+  min-height: 100vh;
 }
 
 .container {
@@ -313,7 +317,7 @@ input[type] {
   background-color: var(--color-primary);
   color: var(--color-white);
   font-size: 16px;
-  border-radius: 5px;
+  border-radius: 20px;
   transition: .5s ease;
   min-width: 100px;
   padding: 8px 20px;
@@ -609,12 +613,6 @@ main.lazyloaded {
   display: none;
 }
 
-.section-price .pricing > li::after, .section-profil .profil__right, table, footer {
-  background-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
-  border-radius: 20px;
-}
-
 main {
   padding-bottom: 50px;
   min-height: calc(100vh - 52px);
@@ -675,26 +673,17 @@ main {
   position: relative;
 }
 
-.section-price .pricing > li::after {
-  left: 10px;
-  top: 10px;
-  right: 10px;
-  bottom: 10px;
-  backdrop-filter: blur(10px) saturate(100%) contrast(45%) brightness(130%);
-  content: '';
-  position: absolute;
-  z-index: 0;
-  border-radius: 40px;
-  border-top-left-radius: 0;
-}
-
 .section-price .pricing > li a {
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  backdrop-filter: blur(10px) saturate(100%) contrast(45%) brightness(130%);
   text-align: center;
   height: 100%;
   border: 1px solid #ececec;
   display: block;
   padding: 20px;
-  border-radius: 40px;
+  border-radius: 30px;
   border-top-left-radius: 0;
   z-index: 1;
   position: relative;
@@ -717,15 +706,27 @@ main {
   padding-bottom: 150%;
   position: relative;
   width: 100%;
-  transition: background 5s, transform .3s ease;
+  transition: background 5s ease-in-out, transform .3s ease;
   background-size: 100%;
   background-position: top;
 }
 
-.section-template ul li p {
-  margin-top: 15px;
+.section-template ul li figure span {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 10px 30px;
+  background-color: var(--color-basic);
+  border-radius: 30px 0;
+  font-size: clamp(1rem, 2vw, 1.2rem);
   font-weight: 600;
-  margin-bottom: 10px;
+  letter-spacing: 1px;
+  color: var(--color-white);
+}
+
+.section-template ul li p {
+  margin: 15px 0;
+  font-weight: 600;
 }
 
 .section-template ul li .btn {
@@ -739,6 +740,18 @@ main {
   transform: translateY(0);
 }
 
+.section-template ul li.basic figure span {
+  background-color: var(--color-basic);
+}
+
+.section-template ul li.premium figure span {
+  background-color: var(--color-premium);
+}
+
+.section-template ul li.eksklusif figure span {
+  background-color: var(--color-eksklusif);
+}
+
 .section-profil .profil__left {
   flex: 0 0 300px;
 }
@@ -746,6 +759,10 @@ main {
 .section-profil .profil__right {
   flex: 0 0 calc(100% - 350px);
   text-align: left;
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  backdrop-filter: blur(10px) saturate(100%) contrast(45%) brightness(130%);
 }
 
 dd {
@@ -765,6 +782,25 @@ dd {
   clear: both;
 }
 
+.table-responsive.unglass table {
+  text-align: left;
+  background-color: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  border: none;
+  min-width: 300px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.table-responsive.unglass table thead {
+  background-color: transparent;
+}
+
+.table-responsive.unglass table tr:after {
+  display: none;
+}
+
 table {
   width: 100%;
   min-width: 600px;
@@ -773,11 +809,15 @@ table {
   border-spacing: 0;
   overflow: hidden;
   margin-bottom: 0;
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  backdrop-filter: blur(10px) saturate(100%) contrast(45%) brightness(130%);
   backdrop-filter: blur(10px) saturate(100%) contrast(45%) brightness(130%);
 }
 
 table thead {
-  background-color: rgba(236, 236, 236, 0.3);
+  background-color: rgba(236, 236, 236, 0.2);
 }
 
 table thead tr::after {
@@ -797,7 +837,7 @@ table tr::after {
   position: absolute;
   height: 1px;
   width: 100%;
-  bottom: 0;
+  top: 0;
   left: 0;
   right: 0;
   background-color: rgba(255, 255, 255, 0.5);
@@ -820,16 +860,16 @@ table tr::after {
   position: absolute;
 }
 
-.gradient li.red {
-  left: 0;
+.gradient li.green {
   top: 0;
-  background: radial-gradient(ellipse at top left, #e66465, transparent);
+  left: 0;
+  background: radial-gradient(ellipse at top left, #64e67e, transparent);
 }
 
-.gradient li.green {
-  right: 0;
+.gradient li.yellow {
   top: 0;
-  background: radial-gradient(ellipse at top right, #64e67e, transparent);
+  right: 0;
+  background: radial-gradient(ellipse at top right, #d9e664, transparent);
 }
 
 .gradient li.blue {
@@ -838,10 +878,10 @@ table tr::after {
   background: radial-gradient(ellipse at bottom left, #64a7e6, transparent);
 }
 
-.gradient li.yellow {
-  bottom: 0;
+.gradient li.red {
   right: 0;
-  background: radial-gradient(ellipse at bottom right, #d9e664, transparent);
+  bottom: 0;
+  background: radial-gradient(ellipse at bottom right, #e66465, transparent);
 }
 
 .blob {
@@ -1013,6 +1053,10 @@ footer {
   position: relative;
   z-index: 1;
   padding: 10px 0;
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  backdrop-filter: blur(10px) saturate(100%) contrast(45%) brightness(130%);
   border-radius: 0;
   margin-bottom: 65px;
 }
@@ -1061,9 +1105,11 @@ footer p {
     bottom: auto;
     top: 0;
     margin: 0;
-    background: rgba(255, 255, 255, 0.5);
-    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.25);
-    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    backdrop-filter: blur(10px) saturate(100%) contrast(45%) brightness(130%);
+    border-radius: 0;
   }
   .nav .container {
     display: flex;

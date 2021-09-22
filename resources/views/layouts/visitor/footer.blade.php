@@ -17,6 +17,8 @@
 <!-- daterangepicker -->
 <script src="{{url('')}}/assets/plugins/moment/moment.min.js"></script>
 <script src="{{url('')}}/assets/plugins/daterangepicker/daterangepicker.js"></script>
-<!-- form -->
+<!-- isotope -->
+<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+
 <script src="{{url('')}}/js/user.js"></script>
 @stack('scripts')
