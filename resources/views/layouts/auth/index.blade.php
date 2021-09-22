@@ -10,6 +10,8 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{url('')}}/assets/plugins/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="{{url('')}}/css/user.min.css">
+  <!-- Toastr -->
+  <link rel="stylesheet" href="{{url('')}}/assets/plugins/toastr/toastr.min.css">
 
 </head>
 <body class="auth">

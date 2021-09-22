@@ -65,4 +65,5 @@
 <script src="{{url('')}}/assets/plugins/select2/js/select2.full.min.js"></script>
 <!-- Summernote -->
 <script src="{{url('')}}/assets/plugins/summernote/summernote-bs4.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 @stack('scripts')

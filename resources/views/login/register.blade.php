@@ -7,7 +7,7 @@
     <div class="logo"><b>Undang</b>an</div>
     <div class="">
       <p class="">Register a new membership</p>
-      <form action="../../index.html" class="form" method="post">
+      <form action="{{url('register')}}" class="form" method="post">
         {{ csrf_field() }}
         <div class="form__item">
           <input type="text" class="" name="name" id="name" placeholder="Full name">
@@ -26,14 +26,12 @@
           <span class="fas fa-lock"></span>
         </div>
         <div class="form__item">
-          <input type="text" class="" name="phone" id="Phone" placeholder="Phone (WA)">
+          <input type="number" class="" name="phone" id="Phone" placeholder="Phone (WA)">
           <span class="fas fa-mobile"></span>
         </div>
         <div class="form__item otp">
-          <input type="text" class="" name="otp" id="otp" placeholder="Otp">
+          <input type="number" class="" name="otp" id="otp" placeholder="Otp">
           <a href="javascript:void(0);" onclick="SendOtp()" class="">Send Otp</a>
-          {{-- <span class="fas fa-lock"></span> --}}
-          <span id="error_otp"></span>
         </div>
         <div class="-flex -justify-between -align-center">
           <div class="form__checkbox -flex ">
@@ -54,50 +52,7 @@
   </div>
 
 
-  @push('scripts')
-  <!-- jQuery -->
-  <script src="{{url('')}}/assets/plugins/jquery/jquery.min.js"></script>
-  <script>
-    $(document).ready(function(){
-
-     $('#otp').blur(function(){
-      var error_otp = '';
-      var otp = $('#otp').val();
-      var _token = $('input[name="_token"]').val();
-      var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-      if(!filter.test(otp))
-      {
-       $('#error_otp').html('<label class="text-danger">Otp tidak sesuai, mohon dicek!</label>');
-       $('#otp').addClass('has-error');
-       $('#register').attr('disabled', 'disabled');
-     }
-     else
-     {
-       $.ajax({
-         url: '{{ url('/')}}/otp/check',
-         method:"POST",
-         data:{otp:otp, _token:_token},
-         success:function(result)
-         {
-           if(result == 'unique')
-           {
-            $('#error_otp').html('<label class="text-success">Otp Available</label>');
-            $('#otp').removeClass('has-error');
-            $('#register').attr('disabled', false);
-          }
-          else
-          {
-            $('#error_otp').html('<label class="text-danger">Otp not Available</label>');
-            $('#otp').addClass('has-error');
-            $('#register').attr('disabled', 'disabled');
-          }
-        }
-      })
-     }
-   });
-
-   });
- </script>
+@push('scripts')
  <script>
    function SendOtp() {
     $.ajax({
@@ -111,10 +66,10 @@
     },
     success: function (response) {
       if(response.success){
-        // return toastr.success(response.message, 'Sukses !')
+        return toastr.success(response.message, 'Sukses !')
       }
       alert(response.message);
-    //   return toastr.error(response.message, 'Gagal !')
+    return toastr.error(response.message, 'Gagal !')
     },
     error: function (response) {
       console.log(response)

@@ -67,19 +67,18 @@ class HomeRegisterController extends Controller
             'username' => 'required',
             'email' => 'required',
             'phone' => 'required',
-            'password'=> 'required'
+            'password'=> 'required','min:8'
         ]);
-
 
         User::create([
             'name' => $request->name,
             'username' => $request->username,
             'email' => $request->email,
-            'phone' => $request->phone,
+            'phone' => Redis::get($request->phone),
             'password' => bcrypt($request->password),
             'level' => 'visitor'
         ]);
-        //$this->sendWhatsappOtp($otp, $register->phone);
+        
        return redirect('login')->with('alert-success', 'Register berhasil silahkan login !');
     }
 
@@ -93,7 +92,7 @@ class HomeRegisterController extends Controller
                 ]);
             }
             $phone = $request->phone;
-            $otp = rand(1000, 9999);
+            $otp = rand(100000, 999999);
 
             $redis = Redis::get($phone);
             $redis_expire = Redis::get($phone . '_expire');
@@ -120,22 +119,4 @@ class HomeRegisterController extends Controller
         }
     }
 
-    public function CheckOtp(Request $request)
-    {
-       if($request->get('otp'))
-       {
-          $otp = $request->get('otp');
-          $data = DB::table("users")
-          ->where('otp', $otp)
-          ->count();
-          if($data > 0)
-          {
-             echo 'not_unique';
-         }
-         else
-         {
-             echo 'unique';
-         }
-        }
-    }
 }
