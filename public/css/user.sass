@@ -437,36 +437,36 @@ $headerheight: 65px
             @for $i from 1 through 7
                 &:nth-child(#{$i}) a
                     transition-delay: (#{$i * .3s})
-        &_profil
-            position: relative
-            >ul
-                position: absolute
-                bottom: 100%
-                opacity: 0
-                transition: all .5s ease
-                pointer-events: none
-                &.show
-                    opacity: 1
-                    pointer-events: auto
-                    li
-                        transform: translate3d(0, 0, 0)
-                        opacity: 1
-                        transition: all .5s ease, opacity .3s .5s ease
-                li
-                    transform: translate3d(0, 100%, 0)
-                    transition: .5s ease,opacity .3s .4s ease
-                    opacity: 0
-                    background: var(--color-primary)
-                    z-index: 0
-                    width: 40px
-                    height: 40px
-                    margin-left: -10px
-                    border-radius: 50%
-                    margin-bottom: 10px
-                    &:first-child
-                        transition-delay: .5s
-                    &:last-child
-                        transition-delay: .3s
+        // &_profil
+        //     position: relative
+        //     >ul
+        //         position: absolute
+        //         bottom: 100%
+        //         opacity: 0
+        //         transition: all .5s ease
+        //         pointer-events: none
+        //         &.show
+        //             opacity: 1
+        //             pointer-events: auto
+        //             li
+        //                 transform: translate3d(0, 0, 0)
+        //                 opacity: 1
+        //                 transition: all .5s ease, opacity .3s .5s ease
+        //         li
+        //             transform: translate3d(0, 100%, 0)
+        //             transition: .5s ease,opacity .3s .4s ease
+        //             opacity: 0
+        //             background: var(--color-primary)
+        //             z-index: 0
+        //             width: 40px
+        //             height: 40px
+        //             margin-left: -10px
+        //             border-radius: 50%
+        //             margin-bottom: 10px
+        //             &:first-child
+        //                 transition-delay: .5s
+        //             &:last-child
+        //                 transition-delay: .3s
 
 .m-hide
     display: none
@@ -592,7 +592,12 @@ main
                 text-align: left
                 @include glass
     &-checkout
-        .checkout
+.checkout
+    &__left
+        flex: 0 0 100%
+    &__right
+        flex: 0 0 100%
+                
             
 dd
     margin-left: 0
@@ -836,7 +841,6 @@ footer
     margin-bottom: $headerheight
     p
         text-align: center
-        font-size: 20px
         color: var(--color-black)
 @media(min-width:768px)
     .hide-md
@@ -867,6 +871,11 @@ footer
     //section
     .main 
         padding-top: $headerheight
+    .checkout
+        &__left,
+        &__right
+            flex: 0 0 50%
+            
 
 @media(min-width:1200px)
     

@@ -4,7 +4,7 @@
     <div class="container">
         <h1>Checkout</h1>
         <div class="checkout -flex -justify-between">
-            <div class="table-responsive unglass">
+            <div class="checkout__left table-responsive unglass">
                 <table>
                     <thead>
                         <tr>
@@ -34,7 +34,7 @@
             </div>
             <div class="checkout__right">
                 <p>Silahkan pilih pembayaran</p>
-                <ul class="-unstyled -flex">
+                <ul class="-unstyled -flex -justify-between">
                     <li>
                         <a href="#">
                             <p>QRIS </p>
