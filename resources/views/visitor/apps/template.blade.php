@@ -15,7 +15,11 @@
         {{--  @foreach ($template->chunk(3) as $chunk) --}}
         <ul class="grid -unstyled">
             @foreach ($template as $template)
+<<<<<<< HEAD
             <li class="grid-item {{ $template->product->name_product}} {{-- @if(\Request::is('visitor/public') ) basic  @endif --}}">
+=======
+            <li class="grid-item @if(\Request::is('visitor/template') ) basic  @endif">
+>>>>>>> d8860ae6475881c4cbcbefac786afe95a01eeff5
                 <figure style="background-image: url(/image/{{ $template->image }})">
                     <span>{{ $template->product->name_product}}</span>
                 </figure>
