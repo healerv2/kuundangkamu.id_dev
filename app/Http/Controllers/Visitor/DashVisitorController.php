@@ -14,7 +14,7 @@ class DashVisitorController extends Controller
 
         $product = Product::all();
 
-        return view('visitor/apps/dashboard',['product' => $product]);
+        return view('visitor/apps/dashboard',compact('product'));
      }
 
 }

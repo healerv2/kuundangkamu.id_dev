@@ -18,6 +18,7 @@ use App\Http\Controllers\Visitor\ListTemplateController;
 use App\Http\Controllers\Visitor\ListUndanganController;
 use App\Http\Controllers\Visitor\ProfilController;
 use App\Http\Controllers\Visitor\CheckoutsController;
+use App\Http\Controllers\Visitor\OrdersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -94,6 +95,8 @@ Route::group(['middleware' => ['auth']], function () {
         
             Route::prefix('/visitor')->group(function() {
                 Route::get('/public',[DashVisitorController::class,'index']);
+                Route::get('/order',[OrdersController::class,'Order']);
+                Route::get('/order/cart/{id}',[OrdersController::class,'AddOrders']);
                 Route::get('/template',[ListTemplateController::class,'index']);
                 Route::get('/undangan',[ListUndanganController::class,'index']);
                 Route::get('/checkout',[CheckoutsController::class,'index']);

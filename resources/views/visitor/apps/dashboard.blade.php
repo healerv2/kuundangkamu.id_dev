@@ -8,7 +8,7 @@
         <ul class="pricing -unstyled -flex -justify-center">
             @foreach ($chunk as $produk)
             <li>
-                <a href="{{url('')}}/visitor/checkout">
+                <a href="{{url('/visitor/order/cart',$produk->id)}}">
                     <h2>{{ $produk->name_product}}</h2>
                     <ul class="-unstyled">
                         <li>{{ $produk->subharga}}</li>
